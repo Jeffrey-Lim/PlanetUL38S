@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour {
 	public static Vector3 movementDir;
 	public static int currentWeapon = 3;
 
-	void FixedUpdate () {
+	void Update () {
 		if (controlMode == 0) { // Muis en Toetsenbord
 			aim = new Button ("Aim");
 			fire = new Button ("Fire");

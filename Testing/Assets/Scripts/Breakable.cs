@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Eigenschappen voor objecten die beschadigd kunnen worden
 public class Breakable : MonoBehaviour {
 	public BreakableData data;
 	private float health;
@@ -40,7 +41,8 @@ public class Breakable : MonoBehaviour {
 				Destroy (particles, 0.5f);
 			}
 			if (data.brokenPrefab != null) {
-				Instantiate (data.brokenPrefab, transform, transform);		
+				GameObject broken = Instantiate (data.brokenPrefab, transform, transform) as GameObject;	
+				Destroy (broken, 10f);
 			}
 			Destroy (gameObject);
 		}
