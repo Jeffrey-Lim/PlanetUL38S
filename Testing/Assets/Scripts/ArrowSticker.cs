@@ -18,7 +18,7 @@ public class ArrowSticker : MonoBehaviour {
 
 	//Zorgt ervoor dat pijlen in objecten blijven steken
 	void OnCollisionEnter (Collision col) {
-		if (col.gameObject.name != "Player" && transform.parent != null) {
+		if (col.gameObject.name != "Arrow(Clone)" && col.gameObject.name != "Player" && transform.parent == null) {
 			//Pijl moet stoppen met bewegen
 			rb.isKinematic = true;
 			//Er moet geen collision meer zijn als de pijl in iets steekt, maar de pijl moet nog wel detecteerbaar zijn om op te pakken

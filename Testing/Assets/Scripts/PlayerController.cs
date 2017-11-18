@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public Transform centerPoint, player, playerCam;
+	private Transform centerPoint, player, playerCam;
 	private float moveFB, moveLR, moveUD; //FB staat voor Forward Backward, LR voor Left Right, UD voor Up Down
 	public float moveSpeed = 20f;
 	public float rotationSpeed = 20f;
-	public float jumpPower = 6f;
-	public float gravity = 20f;
+	public float jumpPower = 20f;
+	public float gravity = 10f;
 	public static int playerstate = 0; /* 
 	 * 0 = Normaal. De speler staat in het midden van je zicht, je kan alleen schieten als je richt.
 	 * 1 = Bij actie. De ligging van de camera is iets anders zodat je kan schieten zonder te richten en je loopt iets sneller.
@@ -18,9 +18,15 @@ public class PlayerController : MonoBehaviour {
 	Ray aimRay;
 	RaycastHit aimHit;
 
+	void Start() {
+		centerPoint = GameObject.Find ("Center Point").transform;
+		player = GameObject.Find ("Player").transform;
+		playerCam = GameObject.Find ("Player Camera").transform;
+	}
+
 	//Pauper functie die checkt of je op de grond staat met een linecast
 	bool IsGrounded () {
-		return Physics.Linecast (player.transform.position, player.transform.position - Vector3.up);
+		return Physics.Linecast (player.transform.position, player.transform.position - Vector3.up * 2f);
 	}
 
 	void Update () {
@@ -41,8 +47,7 @@ public class PlayerController : MonoBehaviour {
 				} else {
 					//Als je richt, kijk je altijd naar voren
 					//player.rotation = Quaternion.Slerp (player.rotation, forward, Time.deltaTime * rotationSpeed);
-					Quaternion lookDir = Quaternion.LookRotation (playerCam.forward * 100f);
-					player.rotation = Quaternion.Slerp (player.rotation, lookDir, Time.deltaTime * rotationSpeed);
+					player.LookAt (playerCam.position + playerCam.forward * 100f);
 					player.rotation = Quaternion.Euler (new Vector3 (0f, player.rotation.eulerAngles.y, 0f));
 				}
 			} else if (InputManager.moveX != 0 || InputManager.moveY != 0) {

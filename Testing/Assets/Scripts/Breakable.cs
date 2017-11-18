@@ -5,36 +5,37 @@ using System.Collections;
 public class Breakable : MonoBehaviour {
 	public BreakableData data;
 	private float health;
+	private bool invincible;
 	private Rigidbody rb;
 
 	void Start () {
 		if (GetComponent<Rigidbody> () != null) {
 			rb = GetComponent<Rigidbody> ();
 			rb.mass = data.mass;
+			rb.isKinematic = data.isLiving;
 		} else {
 			rb = null;
 		}
 		health = data.health;
-	}
-
-	public void TakeDamage (float amount) {
-		health -= amount;
-		if (health <= 0f) {
-			Die ();
+		if (health == -1) {
+			invincible = true;
+		} else {
+			invincible = false;
 		}
 	}
 
-	public void TakeForce (Vector3 force, Vector3 point) {
-		if (rb != null) {
-			rb.AddForceAtPosition (force, point);
-		} else {
-
+	public void TakeDamage (float amount) {
+		if (invincible == false) {
+			health -= amount;
+			if (health <= 0f) {
+				Die ();
+			}
 		}
 	}
 
 	void Die() {
-		if (data.isLiving) {
-
+		if (data.isLiving == true) {
+			rb.isKinematic = false;
 		} else {
 			if (data.brokenParticles != null) {
 				GameObject particles = Instantiate (data.brokenParticles, transform, transform) as GameObject;

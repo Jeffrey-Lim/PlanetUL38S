@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
-	public Transform player, playerCam, gunPoint, centerPoint;
+	private Transform player, playerCam, gunPoint, centerPoint;
 	public GameObject impactEffect, arrowModel;
 	public static int currentWeapon;
 	public static float damage;
@@ -11,6 +11,13 @@ public class Weapon : MonoBehaviour {
 	public float force;
 	Ray aimRay;
 	RaycastHit aimHit;
+
+	void Start() {
+		player = GameObject.Find ("Player").transform;
+		playerCam = GameObject.Find ("Player Camera").transform;
+		gunPoint = GameObject.Find ("Gun Point").transform;
+		centerPoint = GameObject.Find ("Center Point").transform;
+	}
 
 	void Update () {
 		gunPoint.rotation = Quaternion.Euler (new Vector3 (centerPoint.rotation.eulerAngles.x, player.rotation.eulerAngles.y));
@@ -34,14 +41,14 @@ public class Weapon : MonoBehaviour {
 				}
 				//Hoe langer je de boog aanspant, hoe verder de pijl komt
 				if (InputManager.fire.Hold && canFire == true) {
-					draw += 1f * Time.deltaTime;
+					draw += 1.5f * Time.deltaTime;
 				}
-				if (InputManager.fire.Release && draw > 0.1f) {
+				if (InputManager.fire.Release && draw > 0.2f) {
 					//Maak een pijl en vuur die af
 					GameObject arrow = Instantiate (arrowModel, gunPoint.position, gunPoint.rotation) as GameObject;
 					arrow.GetComponent<Rigidbody> ().AddForce (transform.forward * force * draw);
 					draw = 0f;
-				} else if (InputManager.fire.Release && draw <= 0.1f) {
+				} else if (InputManager.fire.Release && draw <= 0.2f) {
 					draw -= 3f * Time.deltaTime;
 					canFire = false;
 				}
@@ -50,7 +57,6 @@ public class Weapon : MonoBehaviour {
 				canFire = true;
 			}
 			draw = Mathf.Clamp (draw, 0f, 1f);
-			Debug.Log (draw);
 			break;
 		case 3: //10mm Pistool
 		case 4: //Revolver
@@ -60,7 +66,7 @@ public class Weapon : MonoBehaviour {
 				force = 100f;
 			} else if (currentWeapon == 4) {
 				damage = 20f;
-				force = 200f;
+				force = 100f;
 			}
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
@@ -75,10 +81,12 @@ public class Weapon : MonoBehaviour {
 						//Als het object stuk kan gaan
 						if (target.GetComponent<Breakable> () != null) {
 							target.GetComponent<Breakable> ().TakeDamage (damage);
+						}
+						if (target.GetComponent<Rigidbody> () != null) {
 							Vector3 heading = target.position - player.position;
 							float distance = heading.magnitude;
 							Vector3 direction = heading / distance;
-							target.GetComponent<Breakable>().TakeForce (direction * force, aimHit.point);
+							target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
 						}
 					}
 				}

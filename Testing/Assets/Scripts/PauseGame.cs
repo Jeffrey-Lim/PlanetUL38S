@@ -2,37 +2,34 @@
 using System.Collections;
 
 public class PauseGame : MonoBehaviour {
-	private Transform playerCam;
+	private Transform centerPoint;
 	private GameObject pausePanel;
 
 	void Start() {
-		playerCam = GameObject.Find ("Player Camera").transform;
-		pausePanel = GameObject.Find ("PausePanel");
+		centerPoint = GameObject.Find ("Center Point").transform;
+		pausePanel = GameObject.Find ("Pause Panel");
 		pausePanel.SetActive(false);
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
+		if (Input.GetKeyDown(KeyCode.Escape)){
 			Pause ();
 		}
 	}
 
 	public void Pause () {
 
-		if (pausePanel.activeInHierarchy == false) 
-		{
+		if (pausePanel.activeInHierarchy == false) {
 			pausePanel.SetActive(true);
 			Time.timeScale = 0;
-			playerCam.GetComponent<CameraController> ().enabled = false;
+			centerPoint.GetComponent<CameraController> ().enabled = false;
 
-		} else 
-		{
+		} else {
 			pausePanel.SetActive(false);
 			Time.timeScale = 1;
-			playerCam.GetComponent<CameraController> ().enabled = true;
+			centerPoint.GetComponent<CameraController> ().enabled = true;
 		}
-}
+	}
 }
