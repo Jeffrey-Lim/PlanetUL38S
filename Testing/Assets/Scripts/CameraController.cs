@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour {
 				Collider[] hitColliders = Physics.OverlapSphere (player.position, 100f, 8);
 
 			} else {
-				toZoom = new Vector3 (3, 0, -5);
+				toZoom = new Vector3 (2, 0, -5);
 			}
 			crosshair.SetActive (true);
 		} else {

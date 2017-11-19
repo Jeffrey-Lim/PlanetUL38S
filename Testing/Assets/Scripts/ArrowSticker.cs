@@ -25,6 +25,8 @@ public class ArrowSticker : MonoBehaviour {
 			this.GetComponent<Collider> ().isTrigger = true;
 			//Zet het object waar de pijl in steekt als parent
 			transform.parent = col.transform;
+			//Zet de trail uit
+			this.GetComponent<TrailRenderer> ().enabled = false;
 
 			if (col.transform.GetComponent<Breakable> () != null) {
 				Breakable target = col.transform.GetComponent<Breakable> ();
