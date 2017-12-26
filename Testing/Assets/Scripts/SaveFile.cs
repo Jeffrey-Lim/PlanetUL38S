@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class SaveFile : MonoBehaviour {
-	public static int[] maxAmmo = new int[] {30, 100, 60}, currentAmmo = new int[] {5, 20, 10};
+	//Volgorde: Pijl & Boog, Pistool, Revolver, Shotgun
+	public static int[] maxAmmo = new int[] {30, 100, 60, 10}, currentAmmo = new int[] {30, 20, 10, 6};
 
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);

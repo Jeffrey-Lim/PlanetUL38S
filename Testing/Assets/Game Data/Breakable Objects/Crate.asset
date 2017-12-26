@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5b653bfbfeb41a47b47f899d7a806d7, type: 3}
-  m_Name: Test Enemy
+  m_Name: Crate
   m_EditorClassIdentifier: 
-  health: 50
-  mass: 1
-  isLiving: 1
-  targetDistance: 100
-  brokenPrefab: {fileID: 0}
+  health: 40
+  mass: 10
+  isLiving: 0
+  targetDistance: 0
+  brokenPrefab: {fileID: 1000010864415784, guid: 5e1d61497a8be2d4bbbf35762c2a82e4,
+    type: 2}
   brokenParticles: {fileID: 0}
