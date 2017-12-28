@@ -3357,10 +3357,10 @@ MonoBehaviour:
   impactEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
   arrowModel: {fileID: 1000013390199332, guid: dc3fb43de3a4fef4aacb349744daa92d, type: 2}
   reloadTime:
-  - 0
-  - 0
-  - 0
-  - 0
+  - 2
+  - 2
+  - 2
+  - 2
 --- !u!1 &1553859262
 GameObject:
   m_ObjectHideFlags: 0

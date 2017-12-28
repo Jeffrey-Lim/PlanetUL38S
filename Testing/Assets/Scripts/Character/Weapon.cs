@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour {
 	Ray aimRay;
 	RaycastHit aimHit;
 	//Variabelen voor het herladen
-	private int[] maxAmmo, currentAmmo, inMagazine;
+	private int[] maxAmmo, currentAmmo, inMagazine, maxMagazine;
 	public float[] reloadTime;
 	private bool reloading = false;
 
@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour {
 
 		maxAmmo = SaveFile.maxAmmo;
 		currentAmmo = SaveFile.currentAmmo;
+		maxMagazine = SaveFile.maxMagazine;
 		inMagazine = new int[] {Mathf.Clamp(currentAmmo[0], 0, 1), Mathf.Clamp(currentAmmo[1], 0, 10), Mathf.Clamp(currentAmmo[2], 0, 6), Mathf.Clamp(currentAmmo[3], 0, 4)};
 		lastWeapon = currentWeapon;
 	}
@@ -33,6 +34,20 @@ public class Weapon : MonoBehaviour {
 		currentWeapon = InputManager.currentWeapon;
 		if (currentWeapon != lastWeapon) {
 			reloading = false;
+			lastWeapon = currentWeapon;
+		}
+			
+		if (reloading == true) {
+			draw = 0f;
+			canFire = false;
+			return;
+		}
+
+		if (currentAmmo[currentWeapon - 2] >= 1 && (inMagazine [currentWeapon - 2] == 0 || InputManager.reload.Pressed == true) && reloading == false && inMagazine [currentWeapon - 2] != maxMagazine [currentWeapon - 2]) {
+			Debug.Log ("Triggered");
+			reloading = true;
+			StartCoroutine(Reload (currentWeapon));
+			return;
 		}
 
 		switch (currentWeapon) {
@@ -43,13 +58,7 @@ public class Weapon : MonoBehaviour {
 		case 2: //Pijl en Boog
 			damage = 10f;
 			force = 100f;
-			if (reloading == true) {
-				return;
-			}
 
-			if (inMagazine [currentWeapon - 2] == 0 && currentAmmo[currentWeapon - 2] >= 1) {
-				StartCoroutine(Reload (currentWeapon));
-			}
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
 
 				//Als je terwijl de boog gespannen is op herladen drukt, annuleer je het schieten
@@ -100,18 +109,22 @@ public class Weapon : MonoBehaviour {
 				aimRay.direction = playerCam.forward;
 				if (Physics.Raycast (aimRay, out aimHit)) {
 					if (InputManager.fire.Pressed == true) {
-						Transform target = aimHit.transform;
-						GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
-						Destroy (impactGO, 0.2f);
-						//Als het object stuk kan gaan
-						if (target.GetComponent<Breakable> () != null) {
-							target.GetComponent<Breakable> ().TakeDamage (damage);
-						}
-						if (target.GetComponent<Rigidbody> () != null) {
-							Vector3 heading = target.position - player.position;
-							float distance = heading.magnitude;
-							Vector3 direction = heading / distance;
-							target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
+						if (currentAmmo[currentWeapon - 2] >= 1) {
+							currentAmmo [currentWeapon - 2]--;
+							inMagazine [currentWeapon - 2]--;
+							Transform target = aimHit.transform;
+							GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
+							Destroy (impactGO, 0.2f);
+							//Als het object stuk kan gaan
+							if (target.GetComponent<Breakable> () != null) {
+								target.GetComponent<Breakable> ().TakeDamage (damage);
+							}
+							if (target.GetComponent<Rigidbody> () != null) {
+								Vector3 heading = target.position - player.position;
+								float distance = heading.magnitude;
+								Vector3 direction = heading / distance;
+								target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
+							}
 						}
 					}
 				}
@@ -122,13 +135,18 @@ public class Weapon : MonoBehaviour {
 		}
 		Debug.Log (inMagazine[currentWeapon - 2]);
 		Debug.Log (currentAmmo[currentWeapon - 2]);
+		Debug.Log (reloading);
 	}
 
 	IEnumerator Reload (int weapon) {
-		Debug.Log ("Reloading");
 		reloading = true;
-		yield return new WaitForSeconds (2f);
-		inMagazine[weapon - 2] = Mathf.Clamp(currentAmmo[weapon - 2], 0, 1); 
-		reloading = false;
+		Debug.Log ("Reloading");
+		yield return new WaitForSeconds (reloadTime[weapon - 2]);
+		if (reloading == true) {
+			inMagazine [weapon - 2] = Mathf.Clamp (currentAmmo [weapon - 2], 0, maxMagazine [weapon - 2]); 
+			reloading = false;
+		} else {
+			yield break;
+		}
 	}
 }
