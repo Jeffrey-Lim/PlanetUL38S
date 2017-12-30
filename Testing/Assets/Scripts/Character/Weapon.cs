@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 	private Transform player, playerCam, gunPoint, centerPoint;
 	public GameObject impactEffect, arrowModel;
+	private GameObject shotgunRange;
 	public static int currentWeapon, lastWeapon;
 	public static float damage;
 	private float draw = 0;
@@ -21,6 +23,7 @@ public class Weapon : MonoBehaviour {
 		playerCam = GameObject.Find ("Player Camera").transform;
 		gunPoint = GameObject.Find ("Gun Point").transform;
 		centerPoint = GameObject.Find ("Center Point").transform;
+		shotgunRange = GameObject.Find ("Shotgun Range");
 
 		maxAmmo = SaveFile.maxAmmo;
 		currentAmmo = SaveFile.currentAmmo;
@@ -118,19 +121,46 @@ public class Weapon : MonoBehaviour {
 							GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
 							Destroy (impactGO, 0.2f);
 							//Als het object stuk kan gaan
-							if (target.GetComponent<Breakable> () != null) {
-								target.GetComponent<Breakable> ().TakeDamage (damage);
-							}
 							if (target.GetComponent<Rigidbody> () != null) {
 								Vector3 heading = target.position - player.position;
 								float distance = heading.magnitude;
 								Vector3 direction = heading / distance;
 								target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
 							}
+							if (target.GetComponent<Breakable> () != null) {
+								target.GetComponent<Breakable> ().TakeDamage (damage);
+							}
 						}
 					}
 				}
 			}
+			break;
+		case 5: //Shotgun
+			damage = 30f;
+			force = 500f;
+
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+				if (InputManager.fire.Pressed == true) { 
+					if (currentAmmo [currentWeapon - 2] >= 1) {
+						currentAmmo [currentWeapon - 2]--;
+						inMagazine [currentWeapon - 2]--;
+						foreach (Collider col in shotgunRange.GetComponent<ShotgunCollision> ().colliders) {
+							Transform target = col.transform;
+							//Als het object stuk kan gaan
+							if (target.GetComponent<Rigidbody> () != null) {
+								Vector3 heading = target.position - player.position;
+								float distance = heading.magnitude;
+								Vector3 direction = heading / distance;
+								target.GetComponent<Rigidbody> ().AddForce (direction * force);
+							}
+							if (target.GetComponent<Breakable> () != null) {
+								target.GetComponent<Breakable> ().TakeDamage (damage);
+							}
+						}
+					}
+				}
+			}
+
 			break;
 		default: 
 			break;

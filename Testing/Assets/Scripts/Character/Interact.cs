@@ -34,6 +34,16 @@ public class Interact : MonoBehaviour {
 						if (Weapon.currentAmmo [data.weaponType] < Weapon.maxAmmo [data.weaponType]) {
 							Weapon.currentAmmo [data.weaponType] = Mathf.Clamp (Weapon.currentAmmo [data.weaponType] + target.GetComponent<Ammo> ().amount, 0, Weapon.maxAmmo [data.weaponType]);
 							if (data.destroyOnPickUp == true) {
+								//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
+								GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
+								foreach (GameObject Arrow in Arrows) {
+									if (Arrow.transform.parent != null) {
+										if (Arrow.transform.parent.gameObject == target.gameObject) {
+											Arrow.transform.parent = null;
+											Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+										}
+									}
+								}
 								Destroy (target.gameObject);
 							}
 						}
@@ -43,6 +53,16 @@ public class Interact : MonoBehaviour {
 					if (InputManager.interact.Pressed == true) {
 						
 						if (data.destroyOnPickUp == true) {
+							//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
+							GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
+							foreach (GameObject Arrow in Arrows) {
+								if (Arrow.transform.parent != null) {
+									if (Arrow.transform.parent.gameObject == target.gameObject) {
+										Arrow.transform.parent = null;
+										Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+									}
+								}
+							}
 							Destroy (target.gameObject);
 						}
 					}

@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour {
 	private Transform playerCam, centerPoint, targetPoint, player;
 	public static Transform target;
 	private float distance = 100f;
-	private float mouseX, mouseY, minHeight = -50f, maxHeight = 90f;
+	private float mouseX, mouseY, minHeight = -30f, maxHeight = 90f;
 	private int cameraMode = 0;
 	Vector3 zoom, toZoom;
 	RaycastHit hit;
@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour {
 					target = null;
 				}
 			} else {
-				minHeight = -50f;
+				minHeight = -30f;
 				target = GetClosestTarget (hitColliders);
 				toZoom = new Vector3 (0, 0, -10);
 				crosshair.SetActive (false);
@@ -70,7 +70,7 @@ public class CameraController : MonoBehaviour {
 			//Het center point volgt het personage
 			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
 		} else if (cameraMode == 0) {
-			minHeight = -50f;
+			minHeight = -30f;
 			target = null;
 			toZoom = new Vector3 (0, 0, -10);
 			crosshair.SetActive (false);
