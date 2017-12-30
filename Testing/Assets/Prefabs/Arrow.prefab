@@ -148,7 +148,8 @@ GameObject:
   - 54: {fileID: 54000012036301058}
   - 96: {fileID: 96000011945518328}
   - 114: {fileID: 114000012289807958}
-  m_Layer: 0
+  - 114: {fileID: 114000012947905338}
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -243,7 +244,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013390199332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.437895, y: 2.031, z: -2.2497768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -707,6 +708,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c714b691a87445e4d8ad0d70f06a3d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSticking: 0
+  minVelocity: 100
+--- !u!114 &114000012947905338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013390199332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967894300ff87b642aeccc24ad5caf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 93c1ba7d7e5a93544a2e9ebfcb0323fc, type: 2}
 --- !u!136 &136000012492032564
 CapsuleCollider:
   m_ObjectHideFlags: 1

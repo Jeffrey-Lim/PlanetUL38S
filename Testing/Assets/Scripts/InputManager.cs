@@ -2,8 +2,11 @@
 using System.Collections;
 
 //Dit script heb ik gemaakt zodat alle input in één script wordt bewaard. Hierdoor blijft de input script in andere scripts kort
+//Dit heb je dus nodig. Dit heb ik dus vooral tegen jou, Michael!!!
 
 // Constructor om makkelijk knoppen te maken
+// Alleen de naam in de Unity inputmanager settings heb je nu nodig
+//Allen handig wanneer je van één knop meerdere eigenschappen nodig hebt
 public class Button {
 	public bool Hold { get; set;}
 	public bool Pressed { get; set;}
@@ -19,10 +22,10 @@ public class InputManager : MonoBehaviour {
 	public static float moveX = 0f, moveY = 0f, camX = 0f, camY = 0f;
 	public static float lStickSensitivity = 10f, rStickSensitivity = 10f, mouseSensitivity = 10f, scrollSensitivity = 10f;
 	public static int controlMode = 0, cameraMode = 0; 
-	// controlmode: Muis en Toetsenbord of Controller
+	//controlmode: Muis en Toetsenbord of Controller
 	//cameraMode: 0 = normaal, 1 = richten, 2 = z-targetting
 	public static bool running = false;
-	public static Button jump, aim, fire, reload, melee, run;
+	public static Button jump, aim, fire, reload, melee, run, interact;
 	public static float moveXraw, moveYraw;
 	public static Vector3 movementDir;
 	public static int currentWeapon = 3;
@@ -35,12 +38,15 @@ public class InputManager : MonoBehaviour {
 			melee = new Button ("Melee");
 			run = new Button ("Run");
 			jump = new Button ("Jump");
+			interact = new Button ("Interact");
 
 			camX = Input.GetAxis("Mouse X") * mouseSensitivity;
 			camY = -Input.GetAxis ("Mouse Y") * mouseSensitivity;
 
+			//In plaats van de standaard Unity "Horizontal" en "Vertical" inputdinges gebruik ik nu dit om een kleine bug te voorkomen waarbij bijvoorbeeld links en recht elkaar niet cancellen en de speler dus alsnog beweegt
 			moveX = Input.GetAxis ("Move L") + Input.GetAxis ("Move R");
 			moveY = Input.GetAxis ("Move U") + Input.GetAxis ("Move D");
+			//Movement Direction is nodig om te bepalen waar de speler heen moet kijken
 			movementDir = new Vector3 (moveX, 0, moveY);
 			moveXraw = Input.GetAxisRaw ("Move L") + Input.GetAxisRaw ("Move R");
 			moveYraw = Input.GetAxisRaw ("Move U") + Input.GetAxisRaw ("Move D");
@@ -56,6 +62,7 @@ public class InputManager : MonoBehaviour {
 				currentWeapon = 4; //Revolver
 			}
 
+			//Stel de cameramodus in
 			if (aim.Hold == true) {
 				if (currentWeapon == 1) {
 					cameraMode = 2;
@@ -75,6 +82,7 @@ public class InputManager : MonoBehaviour {
 			} else {
 				running = false;
 			}
+			//Je kan niet rennen tijdens het richten
 			if (cameraMode == 1) {
 				running = false;
 			}

@@ -7,15 +7,19 @@ public class Breakable : MonoBehaviour {
 	public float health;
 	private bool invincible;
 	private Rigidbody rb;
+	private Animator anim;
 
 	void Start () { 
+		anim = this.GetComponent<Animator> ();
+
 		if (GetComponent<Rigidbody> () != null) {
 			rb = GetComponent<Rigidbody> ();
-			rb.mass = data.mass;
-			rb.isKinematic = data.isLiving;
+			//rb.isKinematic = data.isLiving;
 		} else {
 			rb = null;
 		}
+
+		//Zet health op -1 als het wel een Breakable component nodig heeft, maar niet moet kunnen breken
 		health = data.health;
 		if (health == -1f) {
 			invincible = true;
@@ -35,18 +39,25 @@ public class Breakable : MonoBehaviour {
 
 	void Die() {
 		if (data.isLiving == true) {
+			//Het is de bedoeling dat vijanden een ragdoll worden wanneer ze dood zijn, maar ik heb nog geen vijanden om het mee te testen
 			rb.isKinematic = false;
+			anim.SetTrigger ("dead");
 		} else {
 			if (data.brokenParticles != null) {
+				//Spawn breek-particles
 				GameObject particles = Instantiate (data.brokenParticles, transform, transform) as GameObject;
 			}
 			if (data.brokenPrefab != null) {
+				//Spawn de gebroken versie van het voorwerp
 				GameObject broken = Instantiate (data.brokenPrefab, transform.position, transform.rotation) as GameObject;
+				//Geeft een unieke naam aan het net gevormde object
 				string baseName = broken.name;
 				//Pauper script, maar het lukt me anders niet... Vergeef me :(
 				for (int i = 100; GameObject.Find (baseName + "(" + i + ")") == null && i >= 0; i--) {
 					broken.name = baseName + "(" + i + ")";
 				}
+
+				//Zorgt ervoor dat de gebroken prefab dezelfde snelheid heeft als de gewone prefab
 				GameObject[] brokenParts = GameObject.FindGameObjectsWithTag ("Broken Part");
 				foreach (GameObject part in brokenParts) {
 					if (part.transform.parent.name == broken.name) {
@@ -56,12 +67,14 @@ public class Breakable : MonoBehaviour {
 					}
 				}
 			}
+			//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
 			GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
 			foreach (GameObject Arrow in Arrows) {
-				if (Arrow.transform.parent.gameObject == gameObject) {
-					Arrow.transform.parent = null;
-					Arrow.GetComponent<Rigidbody> ().isKinematic = false;
-					Arrow.GetComponent<Collider> ().isTrigger = false;
+				if (Arrow.transform.parent != null) {
+					if (Arrow.transform.parent.gameObject == gameObject) {
+						Arrow.transform.parent = null;
+						Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+					}
 				}
 			}
 			Destroy (gameObject);

@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour {
 	Ray aimRay;
 	RaycastHit aimHit;
 	//Variabelen voor het herladen
-	private int[] maxAmmo, currentAmmo, inMagazine, maxMagazine;
+	public static int[] maxAmmo, currentAmmo, inMagazine, maxMagazine;
 	public float[] reloadTime;
 	private bool reloading = false;
 
@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour {
 		if (currentWeapon != lastWeapon) {
 			reloading = false;
 			lastWeapon = currentWeapon;
+			inMagazine [0] = 0;
 		}
 			
 		if (reloading == true) {
@@ -43,11 +44,12 @@ public class Weapon : MonoBehaviour {
 			return;
 		}
 
-		if (currentAmmo[currentWeapon - 2] >= 1 && (inMagazine [currentWeapon - 2] == 0 || InputManager.reload.Pressed == true) && reloading == false && inMagazine [currentWeapon - 2] != maxMagazine [currentWeapon - 2]) {
-			Debug.Log ("Triggered");
-			reloading = true;
-			StartCoroutine(Reload (currentWeapon));
-			return;
+		if (currentWeapon != 1) {
+			if (currentAmmo [currentWeapon - 2] >= 1 && (inMagazine [currentWeapon - 2] == 0 || InputManager.reload.Pressed == true) && reloading == false && inMagazine [currentWeapon - 2] != maxMagazine [currentWeapon - 2]) {
+				reloading = true;
+				StartCoroutine (Reload (currentWeapon));
+				return;
+			}
 		}
 
 		switch (currentWeapon) {
@@ -107,7 +109,7 @@ public class Weapon : MonoBehaviour {
 				//Je schiet op het punt dat in het midden van het zicht van de camera zit
 				aimRay.origin = playerCam.position;
 				aimRay.direction = playerCam.forward;
-				if (Physics.Raycast (aimRay, out aimHit)) {
+				if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
 					if (InputManager.fire.Pressed == true) {
 						if (currentAmmo[currentWeapon - 2] >= 1) {
 							currentAmmo [currentWeapon - 2]--;
@@ -133,15 +135,21 @@ public class Weapon : MonoBehaviour {
 		default: 
 			break;
 		}
-		Debug.Log (inMagazine[currentWeapon - 2]);
-		Debug.Log (currentAmmo[currentWeapon - 2]);
-		Debug.Log (reloading);
+	}
+
+	void OnGUI () {
+		if (currentWeapon == 1) {
+			GUI.Box (new Rect (0, Screen.height - 60, 100, 50), '\u221E'.ToString());
+		} else {
+			GUI.Box (new Rect (0, Screen.height - 60, 100, 50), inMagazine [currentWeapon - 2].ToString () + "/" + currentAmmo [currentWeapon - 2].ToString ());
+		}
 	}
 
 	IEnumerator Reload (int weapon) {
 		reloading = true;
 		Debug.Log ("Reloading");
 		yield return new WaitForSeconds (reloadTime[weapon - 2]);
+		Debug.Log ("Done");
 		if (reloading == true) {
 			inMagazine [weapon - 2] = Mathf.Clamp (currentAmmo [weapon - 2], 0, maxMagazine [weapon - 2]); 
 			reloading = false;

@@ -83,13 +83,91 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: fish
+        weight: 1
+      - path: fish/body
+        weight: 1
+      - path: fish/body/head 1
+        weight: 1
+      - path: fish/body/head 1/transform4
+        weight: 1
+      - path: fish/body/polySurface1
+        weight: 1
+      - path: fish/body/transform2
+        weight: 1
+      - path: fish/tail_back
+        weight: 1
+      - path: fish/tail_back/transform7
+        weight: 1
+      - path: fish/tail_side 1
+        weight: 1
+      - path: fish/tail_side 1/transform8
+        weight: 1
+      - path: fish/transform1
+        weight: 1
+      - path: head
+        weight: 1
+      - path: head/transform6
+        weight: 1
+      - path: head1
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2tail
+        weight: 1
+      - path: joint1/joint2tail/joint3
+        weight: 1
+      - path: joint1/joint2tail/joint3/joint4
+        weight: 1
+      - path: joint1/joint2tail/joint3/joint5
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform5
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere1/transform3
+        weight: 1
+      - path: tail_side
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 20
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

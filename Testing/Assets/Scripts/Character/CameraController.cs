@@ -6,12 +6,14 @@ public class CameraController : MonoBehaviour {
 	private GameObject crosshair;
 	private Transform playerCam, centerPoint, targetPoint, player;
 	public static Transform target;
+	private float distance = 100f;
 	private float mouseX, mouseY, minHeight = -50f, maxHeight = 90f;
 	private int cameraMode = 0;
 	Vector3 zoom, toZoom;
 	RaycastHit hit;
 
 	void Start() {
+		//Alle nodige gameobject worden hier gevonden
 		crosshair = GameObject.Find ("Crosshair");
 		player = GameObject.Find ("Player").transform;
 		playerCam = GameObject.Find ("Player Camera").transform;
@@ -19,9 +21,10 @@ public class CameraController : MonoBehaviour {
 		targetPoint = GameObject.Find ("Target Point").transform;
 	}
 
+	//Script om het dichtsbijzijnde object uit een collider array te vinden
 	Transform GetClosestTarget (Collider[] targets) {
 		Transform tMin = null;
-		float minDist = 10000f; // = 100^2
+		float minDist = Mathf.Pow(distance, 2f); // = 100^2
 		foreach (Collider c in targets) {
 			float dist = (c.transform.position - player.position).sqrMagnitude;
 			if (dist < minDist && c.GetComponent<Breakable>().health >= 0f) {
@@ -40,10 +43,10 @@ public class CameraController : MonoBehaviour {
 			mouseY += InputManager.camY;
 		}
 
-		//Zoom in door rechtermuisknop ingedrukt te houden
+		//Wanneer je richt met machette
 		if (cameraMode == 2) {
 			minHeight = 0f;
-			Collider[] hitColliders = Physics.OverlapSphere (player.position, 100f, 1<<8);
+			Collider[] hitColliders = Physics.OverlapSphere (player.position, distance, 1<<8);
 			if (target != null) {
 				centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
 				toZoom = new Vector3 (0, 0, -10 - (target.position - player.position).magnitude);
@@ -87,11 +90,11 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate () {
 		//Camera collision
-		if (Physics.Linecast (player.position - centerPoint.forward * 0.5f, targetPoint.position, out hit, ~(1 << 8))) {
+		if (Physics.Linecast (player.position - centerPoint.forward * 0.5f, targetPoint.position, out hit, ~(1 << 8 |1 << 4)) && cameraMode != 2) {
 			if (hit.transform.GetComponent<Breakable> () != null) {
 
 			} else {
-				
+
 			}
 			playerCam.position = hit.point + hit.normal * 0.30f;
 		} else {
