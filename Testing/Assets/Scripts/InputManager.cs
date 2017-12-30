@@ -62,6 +62,8 @@ public class InputManager : MonoBehaviour {
 				currentWeapon = 4; //Revolver
 			} else if (Input.GetButtonDown ("W5")) {
 				currentWeapon = 5; //Shotgun
+			} else if (Input.GetButtonDown ("W6")) {
+				currentWeapon = 6; //Granaat(werper)
 			}
 
 			//Stel de cameramodus in

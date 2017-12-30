@@ -8,12 +8,12 @@ public class TempFishScript : MonoBehaviour {
 	private float direction;
 	private float radius;
 	//private bool stop = false;
-	Vector3 spawnPos;
+	//Vector3 spawnPos;
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody> ();
 		rb.velocity = transform.forward * speed;
-		spawnPos = transform.position;
+		//spawnPos = transform.position;
 		if (Random.Range (0, 2) == 0) {
 			direction = -1f;
 		} else {

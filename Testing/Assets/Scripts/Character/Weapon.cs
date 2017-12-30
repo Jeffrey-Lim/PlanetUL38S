@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 	private Transform player, playerCam, gunPoint, centerPoint;
-	public GameObject impactEffect, arrowModel;
+	public GameObject impactEffect, arrowPrefab, grenadePrefab;
 	private GameObject shotgunRange;
 	public static int currentWeapon, lastWeapon;
 	public static float damage;
@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour {
 		maxAmmo = SaveFile.maxAmmo;
 		currentAmmo = SaveFile.currentAmmo;
 		maxMagazine = SaveFile.maxMagazine;
-		inMagazine = new int[] {Mathf.Clamp(currentAmmo[0], 0, 1), Mathf.Clamp(currentAmmo[1], 0, 10), Mathf.Clamp(currentAmmo[2], 0, 6), Mathf.Clamp(currentAmmo[3], 0, 4)};
+		inMagazine = new int[] {Mathf.Clamp(currentAmmo[0], 0, 1), Mathf.Clamp(currentAmmo[1], 0, 10), Mathf.Clamp(currentAmmo[2], 0, 6), Mathf.Clamp(currentAmmo[3], 0, 4), Mathf.Clamp(currentAmmo[4], 0, 1)};
 		lastWeapon = currentWeapon;
 	}
 
@@ -81,7 +81,7 @@ public class Weapon : MonoBehaviour {
 				if (InputManager.fire.Release && draw > 0.2f) {
 					if (inMagazine [currentWeapon - 2] >= 1) {
 						//Maak een pijl en vuur die af
-						GameObject arrow = Instantiate (arrowModel, gunPoint.position, gunPoint.rotation) as GameObject;
+						GameObject arrow = Instantiate (arrowPrefab, gunPoint.position, gunPoint.rotation) as GameObject;
 						arrow.GetComponent<Rigidbody> ().AddForce (gunPoint.forward * force * draw);
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
@@ -161,6 +161,21 @@ public class Weapon : MonoBehaviour {
 				}
 			}
 
+			break;
+		case 6:
+			damage = 100f;
+			force = 100f;
+
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+				if (InputManager.fire.Pressed == true) { 
+					if (currentAmmo [currentWeapon - 2] >= 1) {
+						currentAmmo [currentWeapon - 2]--;
+						inMagazine [currentWeapon - 2]--;
+						GameObject grenade = Instantiate (grenadePrefab, gunPoint.position, gunPoint.rotation) as GameObject;
+						grenade.GetComponent<Rigidbody> ().AddForce (gunPoint.forward * force);
+					}
+				}
+			}
 			break;
 		default: 
 			break;
