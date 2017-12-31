@@ -77,6 +77,11 @@ public class Breakable : MonoBehaviour {
 					}
 				}
 			}
+
+			if (this.GetComponent<Explosive> () != null) {
+				this.GetComponent<Explosive> ().Explode ();
+			}
+
 			Destroy (gameObject);
 		}
 	}

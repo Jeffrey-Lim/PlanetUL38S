@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour {
 		gunPoint = GameObject.Find ("Gun Point").transform;
 		centerPoint = GameObject.Find ("Center Point").transform;
 		shotgunRange = GameObject.Find ("Shotgun Range");
+		shotgunRange.SetActive (false);
 
 		maxAmmo = SaveFile.maxAmmo;
 		currentAmmo = SaveFile.currentAmmo;
@@ -39,6 +40,12 @@ public class Weapon : MonoBehaviour {
 			reloading = false;
 			lastWeapon = currentWeapon;
 			inMagazine [0] = 0;
+		}
+
+		if (currentWeapon == 5) {
+			shotgunRange.SetActive (true);
+		} else {
+			shotgunRange.SetActive (false);
 		}
 			
 		if (reloading == true) {
@@ -112,23 +119,25 @@ public class Weapon : MonoBehaviour {
 				//Je schiet op het punt dat in het midden van het zicht van de camera zit
 				aimRay.origin = playerCam.position;
 				aimRay.direction = playerCam.forward;
-				if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
-					if (InputManager.fire.Pressed == true) {
-						if (currentAmmo[currentWeapon - 2] >= 1) {
-							currentAmmo [currentWeapon - 2]--;
-							inMagazine [currentWeapon - 2]--;
-							Transform target = aimHit.transform;
-							GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
-							Destroy (impactGO, 0.2f);
-							//Als het object stuk kan gaan
-							if (target.GetComponent<Rigidbody> () != null) {
-								Vector3 heading = target.position - player.position;
-								float distance = heading.magnitude;
-								Vector3 direction = heading / distance;
-								target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
-							}
-							if (target.GetComponent<Breakable> () != null) {
-								target.GetComponent<Breakable> ().TakeDamage (damage);
+				if (InputManager.fire.Pressed == true) {
+					if (currentAmmo[currentWeapon - 2] >= 1) {
+						currentAmmo [currentWeapon - 2]--;
+						inMagazine [currentWeapon - 2]--;
+						if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
+							if (aimHit.transform.gameObject.name != "Shotgun Range") {
+								Transform target = aimHit.transform;
+								GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
+								Destroy (impactGO, 0.2f);
+								//Als het object stuk kan gaan
+								if (target.GetComponent<Rigidbody> () != null) {
+									Vector3 heading = target.position - player.position;
+									float distance = heading.magnitude;
+									Vector3 direction = heading / distance;
+									target.GetComponent<Rigidbody> ().AddForceAtPosition (direction * force, aimHit.point);
+								}
+								if (target.GetComponent<Breakable> () != null) {
+									target.GetComponent<Breakable> ().TakeDamage (damage);
+								}
 							}
 						}
 					}
@@ -153,6 +162,7 @@ public class Weapon : MonoBehaviour {
 								Vector3 direction = heading / distance;
 								target.GetComponent<Rigidbody> ().AddForce (direction * force);
 							}
+
 							if (target.GetComponent<Breakable> () != null) {
 								target.GetComponent<Breakable> ().TakeDamage (damage);
 							}
