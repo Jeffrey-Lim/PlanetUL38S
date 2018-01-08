@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour {
 	public float gravity = 10f;
 	public static int playerstate = 0, cameraMode; /* 
 	 * 0 = Normaal. De speler staat in het midden van je zicht, je kan alleen schieten als je richt.
-	 * 1 = Bij actie. De ligging van de camera is iets anders zodat je kan schieten zonder te richten en je loopt iets sneller.
-	 * 2 = Bij rustige stukjes. De camera staat dichterbij de speler, je kan niet aanvallen en je loopt rustiger.
+	 * 1 = Bij rustige stukjes. De camera staat dichterbij de speler, je kan niet aanvallen en je loopt rustiger.
+	 * 2 = Als ragdoll
+	 * 3 = In Cutscenes
 	 */
 	public static bool running = false;
 	Vector3 movementDir, movement;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour {
 
 		switch (playerstate) {
 		case 0: //Normaal
-		case 1: //Bij actie
 			if (cameraMode == 1) {
 				aimRay.origin = playerCam.position;
 				aimRay.direction = playerCam.forward;
@@ -84,7 +84,12 @@ public class PlayerController : MonoBehaviour {
 				player.GetComponent<Rigidbody> ().velocity += new Vector3 (0, jumpPower, 0);
 			}
 			break;
-		case 2: // Bij rustige stukjes
+		case 1: // Bij rustige stukjes
+			if (InputManager.moveX != 0 || InputManager.moveY != 0 && cameraMode == 0) {
+				//Als je beweegt, kijk je naar de richting waarheen je gaat
+				Quaternion lookRotation = Quaternion.LookRotation (movementDir) * forward;
+				player.rotation = Quaternion.Slerp (player.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+			}
 			break;
 		}
 			

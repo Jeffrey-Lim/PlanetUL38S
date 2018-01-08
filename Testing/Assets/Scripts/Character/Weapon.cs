@@ -71,7 +71,7 @@ public class Weapon : MonoBehaviour {
 			damage = 10f;
 			force = 100f;
 
-			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
 
 				//Als je terwijl de boog gespannen is op herladen drukt, annuleer je het schieten
 				if ((InputManager.reload.Pressed && draw > 0) || canFire == false) {
@@ -115,7 +115,7 @@ public class Weapon : MonoBehaviour {
 				force = 100f;
 			}
 
-			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
 				//Je schiet op het punt dat in het midden van het zicht van de camera zit
 				aimRay.origin = playerCam.position;
 				aimRay.direction = playerCam.forward;
@@ -148,7 +148,7 @@ public class Weapon : MonoBehaviour {
 			damage = 30f;
 			force = 500f;
 
-			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
 				if (InputManager.fire.Pressed == true) { 
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
@@ -176,7 +176,7 @@ public class Weapon : MonoBehaviour {
 			damage = 100f;
 			force = 100f;
 
-			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true) || PlayerController.playerstate == 1) {
+			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
 				if (InputManager.fire.Pressed == true) { 
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;

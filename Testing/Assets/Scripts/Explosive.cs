@@ -45,7 +45,7 @@ public class Explosive : MonoBehaviour {
 			Collider[] colToMove = Physics.OverlapSphere (transform.position, data.explosionRadius);
 			foreach (Collider col in colToMove) {
 				if (col.GetComponent<Rigidbody> () != null) {
-					col.GetComponent<Rigidbody> ().AddExplosionForce (data.explosionForce, transform.position, data.explosionRadius);
+					col.GetComponent<Rigidbody> ().AddExplosionForce (data.explosionForce, transform.position, data.explosionRadius, data.explosionForce * 0.1f);
 				}
 			}
 

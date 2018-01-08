@@ -43,13 +43,13 @@ public class CameraController : MonoBehaviour {
 			mouseY += InputManager.camY;
 		}
 
-		//Wanneer je richt met machette
-		if (cameraMode == 2) {
+		switch (cameraMode) {
+		case 2:
 			minHeight = 0f;
-			Collider[] hitColliders = Physics.OverlapSphere (player.position, distance, 1<<8);
+			Collider[] hitColliders = Physics.OverlapSphere (player.position, distance, 1 << 8);
 			if (target != null) {
 				centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
-				toZoom = new Vector3 (0, 0, -10 - (target.position - player.position).magnitude);
+				toZoom = new Vector3 (0, 0, -8 - (target.position - player.position).magnitude);
 				crosshair.SetActive (false);
 				if ((player.position - target.position).sqrMagnitude >= 10000f) {
 					target = null;
@@ -57,25 +57,36 @@ public class CameraController : MonoBehaviour {
 			} else {
 				minHeight = -30f;
 				target = GetClosestTarget (hitColliders);
-				toZoom = new Vector3 (0, 0, -10);
+				toZoom = new Vector3 (0, 0, -8);
 				crosshair.SetActive (false);
 				//Het center point volgt het personage
 				centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
 			}
-		} else if (cameraMode == 1) {
+			break;
+		case 1:
 			minHeight = -50f;
 			target = null;
 			crosshair.SetActive (true);
-			toZoom = new Vector3 (2, 0, -5);
+			toZoom = new Vector3 (2, 0, -4);
 			//Het center point volgt het personage
 			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
-		} else if (cameraMode == 0) {
+				break;
+		case 0:
 			minHeight = -30f;
 			target = null;
-			toZoom = new Vector3 (0, 0, -10);
+			toZoom = new Vector3 (0, 0, -8);
 			crosshair.SetActive (false);
 			//Het center point volgt het personage
 			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+			break;
+		case 3: 
+			minHeight = -50f;
+			target = null;
+			crosshair.SetActive (false);
+			toZoom = new Vector3 (2, 0, -6);
+			//Het center point volgt het personage
+			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+			break;
 		}
 
 		targetPoint.localPosition = Vector3.Slerp (targetPoint.localPosition, toZoom, Time.deltaTime * 25f);

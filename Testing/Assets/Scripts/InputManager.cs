@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour {
 	public static float lStickSensitivity = 10f, rStickSensitivity = 10f, mouseSensitivity = 10f, scrollSensitivity = 10f;
 	public static int controlMode = 0, cameraMode = 0; 
 	//controlmode: Muis en Toetsenbord of Controller
-	//cameraMode: 0 = normaal, 1 = richten, 2 = z-targetting
+	//cameraMode: 0 = normaal, 1 = richten, 2 = z-targetting, 3 = Bij rustige stukjes, 4 = Geen controle
 	public static bool running = false;
 	public static Button jump, aim, fire, reload, melee, run, interact;
 	public static float moveXraw, moveYraw;
@@ -67,14 +67,20 @@ public class InputManager : MonoBehaviour {
 			}
 
 			//Stel de cameramodus in
-			if (aim.Hold == true) {
-				if (currentWeapon == 1) {
-					cameraMode = 2;
+			if (PlayerController.playerstate == 0 || PlayerController.playerstate == 2) {
+				if (aim.Hold == true) {
+					if (currentWeapon == 1) {
+						cameraMode = 2;
+					} else {
+						cameraMode = 1;
+					}
 				} else {
-					cameraMode = 1;
+					cameraMode = 0;
 				}
+			} else if (PlayerController.playerstate == 3) {
+				cameraMode = 3;
 			} else {
-				cameraMode = 0;
+				cameraMode = 4;
 			}
 
 			//Script voor het rennen

@@ -41,7 +41,10 @@ public class Breakable : MonoBehaviour {
 		if (data.isLiving == true) {
 			//Het is de bedoeling dat vijanden een ragdoll worden wanneer ze dood zijn, maar ik heb nog geen vijanden om het mee te testen
 			rb.isKinematic = false;
-			anim.SetTrigger ("dead");
+			rb.constraints = RigidbodyConstraints.None;
+			if (anim != null) {
+				anim.SetTrigger ("dead");
+			}
 		} else {
 			if (data.brokenParticles != null) {
 				//Spawn breek-particles
