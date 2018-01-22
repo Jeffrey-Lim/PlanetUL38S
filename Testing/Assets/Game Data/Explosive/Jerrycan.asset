@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b653bfbfeb41a47b47f899d7a806d7, type: 3}
-  m_Name: Barrel
+  m_Script: {fileID: 11500000, guid: d8238c0f6992b0a4fb180e848e5a97e7, type: 3}
+  m_Name: Jerrycan
   m_EditorClassIdentifier: 
-  health: 1
-  isLiving: 0
-  targetDistance: 0
-  brokenPrefab: {fileID: 0}
-  brokenParticles: {fileID: 0}
+  delay: 0
+  explosionDamage: 50
+  explosionForce: 75
+  explosionRadius: 10
+  explosionEffect: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}

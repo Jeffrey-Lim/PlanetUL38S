@@ -35,7 +35,7 @@ public class Interact : MonoBehaviour {
 							Weapon.currentAmmo [data.weaponType] = Mathf.Clamp (Weapon.currentAmmo [data.weaponType] + target.GetComponent<Ammo> ().amount, 0, Weapon.maxAmmo [data.weaponType]);
 							if (data.destroyOnPickUp == true) {
 								//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
-								GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
+								GameObject[] Arrows = GameObject.FindGameObjectsWithTag ("Arrow");
 								foreach (GameObject Arrow in Arrows) {
 									if (Arrow.transform.parent != null) {
 										if (Arrow.transform.parent.gameObject == target.gameObject) {
@@ -54,7 +54,7 @@ public class Interact : MonoBehaviour {
 						
 						if (data.destroyOnPickUp == true) {
 							//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
-							GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
+							GameObject[] Arrows = GameObject.FindGameObjectsWithTag ("Arrow");
 							foreach (GameObject Arrow in Arrows) {
 								if (Arrow.transform.parent != null) {
 									if (Arrow.transform.parent.gameObject == target.gameObject) {
@@ -65,6 +65,13 @@ public class Interact : MonoBehaviour {
 							}
 							Destroy (target.gameObject);
 						}
+					}
+				} else if (target.GetComponent<Dialogue>() != null) {
+					Dialogue dialogue = target.GetComponent<Dialogue> ();
+					DialogueData data = dialogue.data;
+					DialogueManager manager = FindObjectOfType<DialogueManager> ();
+					if (InputManager.interact.Pressed == true && manager.inConversation == false && dialogue.canTalk <= 0f) {
+						manager.StartDialogue (data, dialogue);
 					}
 				}
 			}

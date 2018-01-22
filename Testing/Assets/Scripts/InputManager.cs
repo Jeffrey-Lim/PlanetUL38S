@@ -97,6 +97,10 @@ public class InputManager : MonoBehaviour {
 				running = false;
 			}
 
+			if (FindObjectOfType<DialogueManager> ().inConversation == true && interact.Pressed == true) {
+				FindObjectOfType<DialogueManager> ().DisplayNextPart ();
+			}
+
 		} else if (controlMode == 1) { //Controller
 
 		}
