@@ -34,6 +34,10 @@ public class Weapon : MonoBehaviour {
 	}
 
 	void Update () {
+		/*if (Physics.Raycast (playerCam.position, playerCam.position - playerCam.forward, out aimHit, 100f, ~(1 << 4))) {
+			Quaternion lookDir = Quaternion.LookRotation (Vector3.MoveTowards (gunPoint.position, aimHit.point, 100f).normalized);
+			gunPoint.rotation = lookDir;
+		}*/
 		gunPoint.rotation = Quaternion.Euler (new Vector3 (centerPoint.rotation.eulerAngles.x, player.rotation.eulerAngles.y));
 		currentWeapon = InputManager.currentWeapon;
 		if (currentWeapon != lastWeapon) {

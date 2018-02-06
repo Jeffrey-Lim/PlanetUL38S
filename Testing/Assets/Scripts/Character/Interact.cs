@@ -59,7 +59,7 @@ public class Interact : MonoBehaviour {
 							}
 						}
 
-						if (data.destroyOnPickUp == true) {
+						if (data.dontDestroyOnPickUp == false) {
 							Destroy (target.gameObject);
 						}
 					}
