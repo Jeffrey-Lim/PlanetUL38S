@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour {
 				player.rotation = Quaternion.Slerp (player.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 			}
 			break;
+		case 2: //Dialoog of ragdoll: geen besturing
+			movementDir = Vector3.zero;
+			break;
 		}
 			
 		movement = movementDir * moveSpeed;

@@ -5,4 +5,5 @@ public class ItemData : ScriptableObject {
 	public string itemName;
 	public int amount;
 	public bool destroyOnPickUp;
+	public float restoreHealth;
 }

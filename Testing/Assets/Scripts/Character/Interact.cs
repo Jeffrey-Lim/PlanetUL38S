@@ -51,27 +51,31 @@ public class Interact : MonoBehaviour {
 				} else if (target.GetComponent<Item> () != null) {
 					ItemData data = target.GetComponent<Item> ().data;
 					if (InputManager.interact.Pressed == true) {
-						
-						if (data.destroyOnPickUp == true) {
-							//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
-							GameObject[] Arrows = GameObject.FindGameObjectsWithTag ("Arrow");
-							foreach (GameObject Arrow in Arrows) {
-								if (Arrow.transform.parent != null) {
-									if (Arrow.transform.parent.gameObject == target.gameObject) {
-										Arrow.transform.parent = null;
-										Arrow.GetComponent<ArrowSticker> ().isSticking = false;
-									}
-								}
+
+						if (data.restoreHealth != 0f) {
+							player.GetComponent<Breakable> ().health += data.restoreHealth;
+							if (player.GetComponent<Breakable> ().health >= player.GetComponent<Breakable> ().data.health) {
+								player.GetComponent<Breakable> ().health = player.GetComponent<Breakable> ().data.health;
 							}
+						}
+
+						if (data.destroyOnPickUp == true) {
 							Destroy (target.gameObject);
 						}
+					}
+				} else if (target.GetComponent<Locker> () != null) {
+					int itemNumber = target.GetComponent<Locker> ().item;
+					Animator anim = target.GetComponent<Animator> ();
+					if (InputManager.interact.Pressed == true) {
+						anim.SetTrigger ("open");
+						PlayerPrefs.SetInt ("Item" + itemNumber.ToString(), 1);
 					}
 				} else if (target.GetComponent<Dialogue>() != null) {
 					Dialogue dialogue = target.GetComponent<Dialogue> ();
 					DialogueData data = dialogue.data;
 					DialogueManager manager = FindObjectOfType<DialogueManager> ();
 					if (InputManager.interact.Pressed == true && manager.inConversation == false && dialogue.canTalk <= 0f) {
-						manager.StartDialogue (data, dialogue);
+						manager.StartDialogue (data, dialogue, target);
 					}
 				}
 			}

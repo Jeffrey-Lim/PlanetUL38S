@@ -22,10 +22,12 @@ public class DialogueManager : MonoBehaviour {
 		dialogueBox.SetActive (false);
 	}
 
-	public void StartDialogue (DialogueData data, Dialogue dialogue) {
+	public void StartDialogue (DialogueData data, Dialogue dialogue, Transform target) {
 		names.Clear ();
 		sentences.Clear ();
 		inConversation = true;
+		PlayerController.playerstate = 2;
+		GameObject.Find ("Character").GetComponent <CameraController> ().enabled = false;
 		current = dialogue;
 		dialogueBox.SetActive(true);
 
@@ -62,5 +64,7 @@ public class DialogueManager : MonoBehaviour {
 		inConversation = false;
 		dialogue.canTalk = 1f;
 		dialogueBox.SetActive (false);
+		PlayerController.playerstate = 0;
+		GameObject.Find ("Character").GetComponent <CameraController> ().enabled = true;
 	}
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   itemName: Fish
   amount: 1
   destroyOnPickUp: 1
+  restoreHealth: 15

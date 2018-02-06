@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
 	public static Transform target;
 	private float distance = 100f;
 	private float mouseX, mouseY, minHeight = -30f, maxHeight = 90f;
-	private int cameraMode = 0;
+	public static int cameraMode = 0;
 	Vector3 zoom, toZoom;
 	RaycastHit hit;
 
@@ -87,7 +87,13 @@ public class CameraController : MonoBehaviour {
 			//Het center point volgt het personage
 			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
 			break;
+		case 4: //Dialogen
+			centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
+			toZoom = new Vector3 (0, 0, -8 - (target.position - player.position).magnitude);
+			crosshair.SetActive (false);
+			break;
 		}
+		//Debug.Log (cameraMode);
 
 		targetPoint.localPosition = Vector3.Slerp (targetPoint.localPosition, toZoom, Time.deltaTime * 25f);
 		//targetPoint.position = Vector3.Slerp (targetPoint.position, toPosition, Time.deltaTime * 50f);
