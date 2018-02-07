@@ -192,6 +192,7 @@ ModelImporter:
     4300000: pCube10
     4300002: pCube9
     4300004: pCube11
+    6400000: pCube11
     9500000: //RootNode
     13700000: pCube10
     13700002: pCube9
@@ -221,7 +222,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 30
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
