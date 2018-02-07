@@ -5,7 +5,7 @@ using System.Collections;
 public class HealthBar : MonoBehaviour {
 	private Image healthBarBar;
 	private CanvasRenderer gameOverScreen;
-	private GameObject healthBar;
+	private GameObject ingameUI;
 	private Breakable player;
 	public float health;
 	public float maxHealth;
@@ -13,8 +13,8 @@ public class HealthBar : MonoBehaviour {
 
 	void Start () {
 		healthBarBar = GameObject.Find ("Health Bar/Bar").GetComponent<Image>();
-		healthBar = GameObject.Find ("Health Bar");
 		gameOverScreen = GameObject.Find ("Game Over Screen").GetComponent<CanvasRenderer> ();
+		ingameUI = GameObject.Find ("Ingame UI");
 		gameOverScreen.SetAlpha (0f);
 		player = GameObject.Find ("Player").GetComponent<Breakable>();
 		maxHealth = GameObject.Find ("Player").GetComponent<Breakable> ().data.health;
@@ -26,7 +26,7 @@ public class HealthBar : MonoBehaviour {
 
 		if (health <= 0f) {
 			player.health = 0;
-			healthBar.SetActive (false);
+			ingameUI.SetActive (false);
 			PlayerController.playerstate = 2;
 			gameOverAlpha = Mathf.Clamp (gameOverAlpha + 0.3f * Time.deltaTime, 0f, 1f);
 			Debug.Log (gameOverAlpha);

@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 	private Transform player, playerCam, gunPoint, centerPoint;
+	private Text ammoAmount;
+	private GameObject machetePanel, bowPanel, pistolPanel, revolverPanel, shotgunPanel, grenadePanel;
+	private GameObject[] panels;
 	public GameObject impactEffect, arrowPrefab, grenadePrefab;
 	private GameObject shotgunRange;
 	public static int currentWeapon, lastWeapon;
@@ -25,6 +29,15 @@ public class Weapon : MonoBehaviour {
 		centerPoint = GameObject.Find ("Center Point").transform;
 		shotgunRange = GameObject.Find ("Shotgun Range");
 		shotgunRange.SetActive (false);
+
+		ammoAmount = GameObject.Find ("Ammo Amount").GetComponent<Text> ();
+		machetePanel = GameObject.Find ("Machete Panel");
+		bowPanel = GameObject.Find ("Bow Panel");
+		pistolPanel = GameObject.Find ("10mm Pistol Panel");
+		revolverPanel = GameObject.Find ("Revolver Panel");
+		shotgunPanel = GameObject.Find ("Shotgun Panel");
+		grenadePanel = GameObject.Find ("Grenade Launcher Panel");
+		panels = new GameObject[] {machetePanel, bowPanel, pistolPanel, revolverPanel, shotgunPanel, grenadePanel};
 
 		maxAmmo = SaveFile.maxAmmo;
 		currentAmmo = SaveFile.currentAmmo;
@@ -50,6 +63,18 @@ public class Weapon : MonoBehaviour {
 			shotgunRange.SetActive (true);
 		} else {
 			shotgunRange.SetActive (false);
+		}
+
+		//Activeer de bijbehorende panel
+		foreach (GameObject panel in panels) {
+			panel.SetActive (false);
+		}
+		panels [currentWeapon - 1].SetActive (true);
+
+		if (currentWeapon == 1) {
+			ammoAmount.text = '\u221E'.ToString();
+		} else {
+			ammoAmount.text = inMagazine [currentWeapon - 2].ToString () + "/" + currentAmmo [currentWeapon - 2].ToString ();
 		}
 			
 		if (reloading == true) {
@@ -193,14 +218,6 @@ public class Weapon : MonoBehaviour {
 			break;
 		default: 
 			break;
-		}
-	}
-
-	void OnGUI () {
-		if (currentWeapon == 1) {
-			GUI.Box (new Rect (0, Screen.height - 60, 100, 50), '\u221E'.ToString());
-		} else {
-			GUI.Box (new Rect (0, Screen.height - 60, 100, 50), inMagazine [currentWeapon - 2].ToString () + "/" + currentAmmo [currentWeapon - 2].ToString ());
 		}
 	}
 
