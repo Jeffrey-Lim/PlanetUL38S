@@ -96,6 +96,9 @@ ModelImporter:
     100176: transform5
     100178: transform6
     100180: pSphere4
+    100182: pSphere5
+    100184: transform7
+    100186: transform8
     400000: Character1_Head
     400002: Character1_Hips
     400004: Character1_LeftArm
@@ -187,15 +190,21 @@ ModelImporter:
     400176: transform5
     400178: transform6
     400180: pSphere4
+    400182: pSphere5
+    400184: transform7
+    400186: transform8
     2300000: pSphere4
     3300000: pSphere4
     4300000: pSphere2
     4300002: pSphere3
     4300004: pSphere4
+    4300006: pSphere5
     6400000: pSphere4
+    7400000: Take 001
     9500000: //RootNode
     13700000: pSphere2
     13700002: pSphere3
+    13700004: pSphere5
   materials:
     importMaterials: 1
     materialName: 0

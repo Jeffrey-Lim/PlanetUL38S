@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Name: Hamburger
   m_EditorClassIdentifier: 
   itemName: Hamburger
-  amount: 1
   dontDestroyOnPickUp: 0
-  restoreHealth: 50
+  restoreHealth: 60

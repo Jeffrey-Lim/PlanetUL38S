@@ -6,9 +6,13 @@ public class Ammo : MonoBehaviour {
 	public int amount;
 
 	void Start () {
-		amount = data.amount;
-		if (amount == 0) {
-			amount = 1000;
+		if (data.randomAmount == true) {
+			amount = Mathf.RoundToInt(Random.Range (2, 20));
+		} else {
+			amount = data.amount;
+			if (amount == 0) {
+				amount = 1000;
+			}
 		}
 	}
 }

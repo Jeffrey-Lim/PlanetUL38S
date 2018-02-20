@@ -6,5 +6,4 @@ public class BreakableData : ScriptableObject {
 	public bool isLiving;
 	public float targetDistance;
 	public GameObject brokenPrefab;
-	public GameObject brokenParticles;
 }

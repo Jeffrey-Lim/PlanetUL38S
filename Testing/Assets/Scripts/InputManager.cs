@@ -101,6 +101,10 @@ public class InputManager : MonoBehaviour {
 				FindObjectOfType<DialogueManager> ().DisplayNextPart ();
 			}
 
+			if (FindObjectOfType<DialogueManager> ().inConversation == true && reload.Pressed == true) {
+				FindObjectOfType<DialogueManager> ().EndDialogue(DialogueManager.current);
+			}
+
 		} else if (controlMode == 1) { //Controller
 
 		}

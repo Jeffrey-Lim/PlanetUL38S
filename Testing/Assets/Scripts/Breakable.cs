@@ -46,10 +46,27 @@ public class Breakable : MonoBehaviour {
 				anim.SetTrigger ("dead");
 			}
 		} else {
-			if (data.brokenParticles != null) {
-				//Spawn breek-particles
-				GameObject particles = Instantiate (data.brokenParticles, transform, transform) as GameObject;
+			
+			if (this.GetComponent<Explosive> () != null) {
+				this.GetComponent<Explosive> ().Explode ();
 			}
+
+			if (this.GetComponent<Target> () != null) {
+				this.GetComponent<Target> ().MoveObject ();
+				return;
+			}
+
+			//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
+			GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
+			foreach (GameObject Arrow in Arrows) {
+				if (Arrow.transform.parent != null) {
+					if (Arrow.transform.parent.gameObject == gameObject) {
+						Arrow.transform.parent = null;
+						Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+					}
+				}
+			}
+
 			if (data.brokenPrefab != null) {
 				//Spawn de gebroken versie van het voorwerp
 				GameObject broken = Instantiate (data.brokenPrefab, transform.position, transform.rotation) as GameObject;
@@ -70,21 +87,6 @@ public class Breakable : MonoBehaviour {
 					}
 				}
 			}
-			//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
-			GameObject[] Arrows = GameObject.FindGameObjectsWithTag("Arrow");
-			foreach (GameObject Arrow in Arrows) {
-				if (Arrow.transform.parent != null) {
-					if (Arrow.transform.parent.gameObject == gameObject) {
-						Arrow.transform.parent = null;
-						Arrow.GetComponent<ArrowSticker> ().isSticking = false;
-					}
-				}
-			}
-
-			if (this.GetComponent<Explosive> () != null) {
-				this.GetComponent<Explosive> ().Explode ();
-			}
-
 			Destroy (gameObject);
 		}
 	}

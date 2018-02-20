@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class PauseGame : MonoBehaviour {
-	private Transform centerPoint;
+	private Transform character;
 	private GameObject pausePanel;
 
 	void Start() {
-		centerPoint = GameObject.Find ("Center Point").transform;
+		character = GameObject.Find ("Character").transform;
 		pausePanel = GameObject.Find ("Pause Panel");
 		pausePanel.SetActive(false);
 	}
@@ -23,12 +23,12 @@ public class PauseGame : MonoBehaviour {
 		if (pausePanel.activeInHierarchy == false) {
 			pausePanel.SetActive(true);
 			Time.timeScale = 0;
-			centerPoint.GetComponent<CameraController> ().enabled = false;
+			character.GetComponent<CameraController> ().enabled = false;
 
 		} else {
 			pausePanel.SetActive(false);
 			Time.timeScale = 1;
-			centerPoint.GetComponent<CameraController> ().enabled = true;
+			character.GetComponent<CameraController> ().enabled = true;
 		}
 	}
 }

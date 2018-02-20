@@ -28,6 +28,7 @@ public class Interact : MonoBehaviour {
 		if (hitColliders.Length >= 1) {
 			Transform target = GetClosestTarget (hitColliders);
 			if ((target.position - player.position).sqrMagnitude <= 16f) {
+				
 				if (target.GetComponent<Ammo> () != null) {
 					AmmoData data = target.GetComponent<Ammo> ().data;
 					if (InputManager.interact.Pressed == true) {
@@ -48,21 +49,35 @@ public class Interact : MonoBehaviour {
 							}
 						}
 					}
+
 				} else if (target.GetComponent<Item> () != null) {
 					ItemData data = target.GetComponent<Item> ().data;
-					if (InputManager.interact.Pressed == true) {
+					if (player.GetComponent<Breakable> ().health != GameObject.Find ("Player").GetComponent<Breakable> ().data.health) {
+						if (InputManager.interact.Pressed == true) {
 
-						if (data.restoreHealth != 0f) {
-							player.GetComponent<Breakable> ().health += data.restoreHealth;
-							if (player.GetComponent<Breakable> ().health >= player.GetComponent<Breakable> ().data.health) {
-								player.GetComponent<Breakable> ().health = player.GetComponent<Breakable> ().data.health;
+							if (data.restoreHealth != 0f) {
+								player.GetComponent<Breakable> ().health += data.restoreHealth;
+								if (player.GetComponent<Breakable> ().health >= player.GetComponent<Breakable> ().data.health) {
+									player.GetComponent<Breakable> ().health = player.GetComponent<Breakable> ().data.health;
+								}
+							}
+
+							if (data.dontDestroyOnPickUp == false) {
+								//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
+								GameObject[] Arrows = GameObject.FindGameObjectsWithTag ("Arrow");
+								foreach (GameObject Arrow in Arrows) {
+									if (Arrow.transform.parent != null) {
+										if (Arrow.transform.parent.gameObject == target.gameObject) {
+											Arrow.transform.parent = null;
+											Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+										}
+									}
+								}
+								Destroy (target.gameObject);
 							}
 						}
-
-						if (data.dontDestroyOnPickUp == false) {
-							Destroy (target.gameObject);
-						}
 					}
+
 				} else if (target.GetComponent<Locker> () != null) {
 					int itemNumber = target.GetComponent<Locker> ().item;
 					Animator anim = target.GetComponent<Animator> ();
@@ -70,6 +85,7 @@ public class Interact : MonoBehaviour {
 						anim.SetTrigger ("open");
 						PlayerPrefs.SetInt ("Item" + itemNumber.ToString(), 1);
 					}
+
 				} else if (target.GetComponent<Dialogue>() != null) {
 					Dialogue dialogue = target.GetComponent<Dialogue> ();
 					DialogueData data = dialogue.data;

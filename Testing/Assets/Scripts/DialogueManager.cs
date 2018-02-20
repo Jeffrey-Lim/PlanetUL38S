@@ -7,8 +7,9 @@ public class DialogueManager : MonoBehaviour {
 	public bool inConversation = false;
 	private Queue<string> names;
 	private Queue<string> sentences;
-	private Dialogue current;
+	public static Dialogue current;
 	private GameObject dialogueBox;
+	private GameObject character;
 	private Text nameText;
 	private Text speechText;
 
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
 		nameText = GameObject.Find ("Name Text").GetComponent<Text>();
 		speechText = GameObject.Find ("Speech Text").GetComponent<Text>();
 		dialogueBox = GameObject.Find ("DialogueBox");
+		character = GameObject.Find ("Character");
 		dialogueBox.SetActive (false);
 	}
 
@@ -26,8 +28,8 @@ public class DialogueManager : MonoBehaviour {
 		names.Clear ();
 		sentences.Clear ();
 		inConversation = true;
-		PlayerController.playerstate = 2;
-		GameObject.Find ("Character").GetComponent <CameraController> ().enabled = false;
+		Time.timeScale = 0;
+		character.GetComponent<CameraController> ().enabled = false;
 		current = dialogue;
 		dialogueBox.SetActive(true);
 
@@ -64,7 +66,7 @@ public class DialogueManager : MonoBehaviour {
 		inConversation = false;
 		dialogue.canTalk = 1f;
 		dialogueBox.SetActive (false);
-		PlayerController.playerstate = 0;
-		GameObject.Find ("Character").GetComponent <CameraController> ().enabled = true;
+		Time.timeScale = 1;
+		character.GetComponent<CameraController> ().enabled = true;
 	}
 }

@@ -19,13 +19,21 @@ public class Weapon : MonoBehaviour {
 	RaycastHit aimHit;
 	//Variabelen voor het herladen
 	public static int[] maxAmmo, currentAmmo, inMagazine, maxMagazine;
-	public float[] reloadTime;
+	public float reloadTime;
 	private bool reloading = false;
+	//Geluiden
+	public AudioClip bowDraw;
+	public AudioClip[] shootingSounds;
+	public AudioClip reloadSound;
+	private AudioSource reloadSource;
+	private AudioSource shootSource;
 
 	void Start() {
 		player = GameObject.Find ("Player").transform;
 		playerCam = GameObject.Find ("Player Camera").transform;
 		gunPoint = GameObject.Find ("Gun Point").transform;
+		reloadSource = GameObject.Find("Reload Sound").GetComponent<AudioSource> ();
+		shootSource = GameObject.Find("Shoot Sound").GetComponent<AudioSource> ();
 		centerPoint = GameObject.Find ("Center Point").transform;
 		shotgunRange = GameObject.Find ("Shotgun Range");
 		shotgunRange.SetActive (false);
@@ -55,6 +63,7 @@ public class Weapon : MonoBehaviour {
 		currentWeapon = InputManager.currentWeapon;
 		if (currentWeapon != lastWeapon) {
 			reloading = false;
+			reloadSource.Stop ();
 			lastWeapon = currentWeapon;
 			inMagazine [0] = 0;
 		}
@@ -121,6 +130,8 @@ public class Weapon : MonoBehaviour {
 						arrow.GetComponent<Rigidbody> ().AddForce (gunPoint.forward * force * draw);
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						shootSource.clip = shootingSounds [currentWeapon - 1];
+						shootSource.Play ();
 					}
 					draw = 0f;
 				} else if (InputManager.fire.Release && draw <= 0.2f) {
@@ -152,6 +163,8 @@ public class Weapon : MonoBehaviour {
 					if (currentAmmo[currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						shootSource.clip = shootingSounds [currentWeapon - 1];
+						shootSource.Play ();
 						if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
 							if (aimHit.transform.gameObject.name != "Shotgun Range") {
 								Transform target = aimHit.transform;
@@ -182,6 +195,8 @@ public class Weapon : MonoBehaviour {
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						shootSource.clip = shootingSounds [currentWeapon - 1];
+						shootSource.Play ();
 						foreach (Collider col in shotgunRange.GetComponent<ShotgunCollision> ().colliders) {
 							Transform target = col.transform;
 							//Als het object stuk kan gaan
@@ -210,6 +225,8 @@ public class Weapon : MonoBehaviour {
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						shootSource.clip = shootingSounds [currentWeapon - 1];
+						shootSource.Play ();
 						GameObject grenade = Instantiate (grenadePrefab, gunPoint.position, gunPoint.rotation) as GameObject;
 						grenade.GetComponent<Rigidbody> ().AddForce (gunPoint.forward * force);
 					}
@@ -222,9 +239,19 @@ public class Weapon : MonoBehaviour {
 	}
 
 	IEnumerator Reload (int weapon) {
+		if (weapon - 2 != 0) {
+			reloadSource.clip = reloadSound;
+			reloadSource.Play ();
+		} else {
+			reloading = true;
+			yield return new WaitForSeconds (1);
+			inMagazine [0] = 1;
+			reloading = false;
+			yield break;
+		}
 		reloading = true;
 		Debug.Log ("Reloading");
-		yield return new WaitForSeconds (reloadTime[weapon - 2]);
+		yield return new WaitForSeconds (reloadTime);
 		Debug.Log ("Done");
 		if (reloading == true) {
 			inMagazine [weapon - 2] = Mathf.Clamp (currentAmmo [weapon - 2], 0, maxMagazine [weapon - 2]); 
