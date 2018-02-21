@@ -97,12 +97,14 @@ public class InputManager : MonoBehaviour {
 				running = false;
 			}
 
-			if (FindObjectOfType<DialogueManager> ().inConversation == true && interact.Pressed == true) {
-				FindObjectOfType<DialogueManager> ().DisplayNextPart ();
-			}
+			if (FindObjectOfType<DialogueManager> ().inConversation == true) {
+				if (interact.Pressed == true) {
+					FindObjectOfType<DialogueManager> ().DisplayNextPart ();
+				}
 
-			if (FindObjectOfType<DialogueManager> ().inConversation == true && reload.Pressed == true) {
-				FindObjectOfType<DialogueManager> ().EndDialogue(DialogueManager.current);
+				if (reload.Pressed == true) {
+					FindObjectOfType<DialogueManager> ().EndDialogue(DialogueManager.current);
+				}
 			}
 
 		} else if (controlMode == 1) { //Controller

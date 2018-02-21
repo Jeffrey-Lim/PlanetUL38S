@@ -9,5 +9,6 @@ public class DialoguePart {
 }
 	
 public class DialogueData : ScriptableObject {
+	public string partnerName;
 	public DialoguePart[] dialogueParts;
 }

@@ -12,7 +12,7 @@ public class Target : MonoBehaviour {
 		//rb = objectToMove.GetComponent<Rigidbody> ();
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if (isTriggered == true) {
 			objectToMove.position = Vector3.Slerp (objectToMove.position, toPosition.position, moveTime * Time.deltaTime);
 			objectToMove.rotation = Quaternion.Slerp (objectToMove.rotation, toPosition.rotation, moveTime * Time.deltaTime);

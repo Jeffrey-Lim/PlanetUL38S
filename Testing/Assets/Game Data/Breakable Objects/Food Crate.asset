@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b653bfbfeb41a47b47f899d7a806d7, type: 3}
+  m_Name: Food Crate
+  m_EditorClassIdentifier: 
+  health: 40
+  isLiving: 0
+  targetDistance: 0
+  brokenPrefab: {fileID: 1000010864415784, guid: 5e1d61497a8be2d4bbbf35762c2a82e4,
+    type: 2}
+  lootItems: 5
+  possibleLoot:
+  - {fileID: 1000013517482660, guid: 20700345f295d6648a2d35f624e92ea4, type: 2}
+  - {fileID: 1000012973481502, guid: 600b5b0783a85194ebb6c294c615b8cd, type: 2}
+  - {fileID: 1000013481252582, guid: ba42d9196bd251745b304a9b2c16085f, type: 2}
+  - {fileID: 1000010515795974, guid: cfcb18d0d5688844989dba27a0453c15, type: 2}
+  - {fileID: 1000013213169990, guid: 8df84dc3cb9ce274f8eb04527e534457, type: 2}
+  - {fileID: 1000012329654698, guid: 8e6d6983b47b3fa488cd217d9fe59837, type: 2}
+  - {fileID: 1000014260021702, guid: 03793d051c3abf949bba9cdaec91d0d7, type: 2}
+  - {fileID: 1000010486873796, guid: 8143351963c749e4ba3c642e6b858d56, type: 2}
+  - {fileID: 1000014053003136, guid: 0b8dca0073abdbc46b31148ec829a001, type: 2}
+  - {fileID: 1000012075861358, guid: d2298ca4b615d1c4181cdef2e1c5e951, type: 2}
+  - {fileID: 1000011360854344, guid: e9c1c46a49e037240944bb8b486bff49, type: 2}
+  - {fileID: 1000011500241536, guid: 26118e72ffb01e745ad050ef950d4ad2, type: 2}
+  - {fileID: 1000013108526452, guid: 6766f1be9b354db45ad81da4517ac0e6, type: 2}
+  - {fileID: 1000013396780556, guid: 30d1e83eaeed17247ae19a13b591db2f, type: 2}
+  - {fileID: 1000013047514472, guid: 29009966c1d0484458e14c5bdb1a0750, type: 2}
+  - {fileID: 1000010945694598, guid: 6f5aae7f1cf6980408dbf17dec83bb70, type: 2}
+  - {fileID: 1000013810568354, guid: 188b52b21482f514089cbc3497cbf3f3, type: 2}
+  - {fileID: 1000011915442696, guid: 80ca19ef1a5bfde47b49155a16512274, type: 2}
+  - {fileID: 1000013335666770, guid: 53b0eb40a131f3c4c87f05fa57d536a3, type: 2}
+  - {fileID: 1000013170672146, guid: fd9074105d48e3447975dca1f64b8154, type: 2}
+  - {fileID: 1000012004233288, guid: 9246968958ab7014fbf25515535b4c1c, type: 2}
+  - {fileID: 1000013172622306, guid: 2a2c45c02a8f7354eaca5bd8d94f0625, type: 2}
+  - {fileID: 1000011934683102, guid: 05f807cb402cfe84889811a332370cbf, type: 2}
+  - {fileID: 1000010172114104, guid: c3326651d9e84c94a91f15a39889d3ae, type: 2}
+  - {fileID: 1000014101034936, guid: 0d268c8adb3edd44abf7240fdd822f3b, type: 2}
+  - {fileID: 1000014024542798, guid: 7951c7000440d5443bb0d2ba8c9f57c4, type: 2}
+  - {fileID: 1000013113144864, guid: a252046b47614a14484098e0aac55607, type: 2}
+  - {fileID: 1000010003737570, guid: 239f66c6ca5a6dc46ae53459ed72ff8b, type: 2}
+  - {fileID: 1000012097878494, guid: 2ca438fd76d25c142a672ac7b1fcf7f1, type: 2}
+  - {fileID: 1000012554603994, guid: 5c381b8c6861ae34e9e8dd6d469fdca8, type: 2}
+  - {fileID: 1000013556004486, guid: aad116f9930c2174dbe5beecb503dc35, type: 2}
+  - {fileID: 1000013225785974, guid: 02629560c058c6a46b002151ea0ee03f, type: 2}
+  - {fileID: 1000013423831990, guid: 8d059c40a5b64a24f902e203adfa0871, type: 2}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8d3b07fb18e4540a813e7c51fba3f6, type: 3}
+  m_Name: Ammo Box 3
+  m_EditorClassIdentifier: 
+  weaponType: 3
+  amount: 0
+  randomAmount: 1
+  destroyOnPickUp: 1

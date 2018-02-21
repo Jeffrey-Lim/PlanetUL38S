@@ -12,9 +12,9 @@ GameObject:
   - 23: {fileID: 2371350}
   - 54: {fileID: 5471562}
   - 64: {fileID: 6404304}
-  - 114: {fileID: 11438952}
-  - 114: {fileID: 11405474}
-  m_Layer: 0
+  - 114: {fileID: 114000011746369992}
+  - 114: {fileID: 114000011683202602}
+  m_Layer: 11
   m_Name: Cookie_tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &6404304
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -97,29 +97,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300010, guid: c4ccdadcde87a2145934911e92a65afa, type: 3}
---- !u!114 &11405474
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 125410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722da07ecec3a28489f32be8cf889ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11438952
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 125410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e254f04b4ac1446910180de58db1d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parts: {fileID: 485312, guid: 11351956b84457d46a8abb71f55363f6, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -131,3 +108,28 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125410}
   m_IsPrefabParent: 1
+--- !u!114 &114000011683202602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c7fa079f96813419df97babfd1c96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 0477d74767be55b42bf33bd222ff26c5, type: 2}
+--- !u!114 &114000011746369992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5958757f72f1649bb4a380525a714f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  health: 0

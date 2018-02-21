@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
+  partnerName: Test
   dialogueParts:
   - name: Test
     speech: Hallo, dit is een test.
