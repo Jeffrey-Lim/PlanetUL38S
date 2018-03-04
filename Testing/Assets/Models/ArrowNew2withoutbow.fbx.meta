@@ -1,0 +1,408 @@
+fileFormatVersion: 2
+guid: c9ec23965b037a740914be9ba7549b08
+timeCreated: 1520177070
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bow:group
+    100004: bow:group1
+    100006: bow:group2
+    100008: bow:group3
+    100010: bow:pasted__group
+    100012: bow:pasted__pTorus1
+    100014: bow:pTorus1
+    100016: bowlatest:group
+    100018: bowlatest:group1
+    100020: bowlatest:group2
+    100022: bowlatest:group3
+    100024: bowlatest:group4
+    100026: bowlatest:group5
+    100028: bowlatest:pasted__group
+    100030: bowlatest:pasted__pasted__pCube1
+    100032: bowlatest:pasted__pCube1
+    100034: bowlatest:pasted__pTorus1
+    100036: bowlatest:pCube1
+    100038: bowlatest:pTorus1
+    100040: bowlatest:transform1
+    100042: bowlatest:transform2
+    100044: bowlatest:transform3
+    100046: group
+    100048: group1
+    100050: group2
+    100052: group3
+    100054: group4
+    100056: joint1
+    100058: joint2
+    100060: pasted__group
+    100062: pasted__group1
+    100064: pasted__pasted__group
+    100066: pasted__pCube1
+    100068: pasted__pCube1 1
+    100070: pCone1
+    100072: pCube1
+    100074: pCylinder1
+    100076: pCylinder2
+    100078: transform1
+    100080: transform2
+    100082: transform3
+    100084: transform4
+    100086: transform5
+    400000: //RootNode
+    400002: bow:group
+    400004: bow:group1
+    400006: bow:group2
+    400008: bow:group3
+    400010: bow:pasted__group
+    400012: bow:pasted__pTorus1
+    400014: bow:pTorus1
+    400016: bowlatest:group
+    400018: bowlatest:group1
+    400020: bowlatest:group2
+    400022: bowlatest:group3
+    400024: bowlatest:group4
+    400026: bowlatest:group5
+    400028: bowlatest:pasted__group
+    400030: bowlatest:pasted__pasted__pCube1
+    400032: bowlatest:pasted__pCube1
+    400034: bowlatest:pasted__pTorus1
+    400036: bowlatest:pCube1
+    400038: bowlatest:pTorus1
+    400040: bowlatest:transform1
+    400042: bowlatest:transform2
+    400044: bowlatest:transform3
+    400046: group
+    400048: group1
+    400050: group2
+    400052: group3
+    400054: group4
+    400056: joint1
+    400058: joint2
+    400060: pasted__group
+    400062: pasted__group1
+    400064: pasted__pasted__group
+    400066: pasted__pCube1
+    400068: pasted__pCube1 1
+    400070: pCone1
+    400072: pCube1
+    400074: pCylinder1
+    400076: pCylinder2
+    400078: transform1
+    400080: transform2
+    400082: transform3
+    400084: transform4
+    400086: transform5
+    2300000: bow:pasted__pTorus1
+    2300002: bow:pTorus1
+    2300004: bowlatest:pasted__pTorus1
+    2300006: bowlatest:pTorus1
+    3300000: bow:pasted__pTorus1
+    3300002: bow:pTorus1
+    3300004: bowlatest:pasted__pTorus1
+    3300006: bowlatest:pTorus1
+    4300000: bow:pTorus1
+    4300002: bow:pasted__pTorus1
+    4300004: bowlatest:pTorus1
+    4300006: bowlatest:pasted__pTorus1
+    4300008: pCylinder2
+    7400000: Arrow Draw
+    7400002: Arrow Release
+    9500000: //RootNode
+    13700000: pCylinder2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Arrow Draw
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bow:group
+        weight: 1
+      - path: bow:group1
+        weight: 1
+      - path: bow:group2
+        weight: 1
+      - path: bow:group2/bow:pasted__group
+        weight: 1
+      - path: bow:group3
+        weight: 1
+      - path: bow:group3/bow:pasted__pTorus1
+        weight: 1
+      - path: bow:pTorus1
+        weight: 1
+      - path: bowlatest:group
+        weight: 1
+      - path: bowlatest:group/bowlatest:pasted__pCube1
+        weight: 1
+      - path: bowlatest:group/bowlatest:pasted__pCube1/bowlatest:transform3
+        weight: 1
+      - path: bowlatest:group1
+        weight: 1
+      - path: bowlatest:group2
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group/bowlatest:pasted__pasted__pCube1
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group/bowlatest:pasted__pasted__pCube1/bowlatest:transform2
+        weight: 1
+      - path: bowlatest:group3
+        weight: 1
+      - path: bowlatest:group3/bowlatest:pasted__pTorus1
+        weight: 1
+      - path: bowlatest:group4
+        weight: 1
+      - path: bowlatest:group5
+        weight: 1
+      - path: bowlatest:pCube1
+        weight: 1
+      - path: bowlatest:pCube1/bowlatest:transform1
+        weight: 1
+      - path: bowlatest:pTorus1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__group1
+        weight: 1
+      - path: group2/pasted__group1/pasted__pasted__group
+        weight: 1
+      - path: group3
+        weight: 1
+      - path: group3/pasted__pCube1
+        weight: 1
+      - path: group3/pasted__pCube1/transform3
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCube1 1
+        weight: 1
+      - path: group4/pasted__pCube1 1/transform2
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: pCone1
+        weight: 1
+      - path: pCone1/transform1
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform4
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform5
+        weight: 1
+      - path: pCylinder2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Arrow Release
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bow:group
+        weight: 1
+      - path: bow:group1
+        weight: 1
+      - path: bow:group2
+        weight: 1
+      - path: bow:group2/bow:pasted__group
+        weight: 1
+      - path: bow:group3
+        weight: 1
+      - path: bow:group3/bow:pasted__pTorus1
+        weight: 1
+      - path: bow:pTorus1
+        weight: 1
+      - path: bowlatest:group
+        weight: 1
+      - path: bowlatest:group/bowlatest:pasted__pCube1
+        weight: 1
+      - path: bowlatest:group/bowlatest:pasted__pCube1/bowlatest:transform3
+        weight: 1
+      - path: bowlatest:group1
+        weight: 1
+      - path: bowlatest:group2
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group/bowlatest:pasted__pasted__pCube1
+        weight: 1
+      - path: bowlatest:group2/bowlatest:pasted__group/bowlatest:pasted__pasted__pCube1/bowlatest:transform2
+        weight: 1
+      - path: bowlatest:group3
+        weight: 1
+      - path: bowlatest:group3/bowlatest:pasted__pTorus1
+        weight: 1
+      - path: bowlatest:group4
+        weight: 1
+      - path: bowlatest:group5
+        weight: 1
+      - path: bowlatest:pCube1
+        weight: 1
+      - path: bowlatest:pCube1/bowlatest:transform1
+        weight: 1
+      - path: bowlatest:pTorus1
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__group
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__group1
+        weight: 1
+      - path: group2/pasted__group1/pasted__pasted__group
+        weight: 1
+      - path: group3
+        weight: 1
+      - path: group3/pasted__pCube1
+        weight: 1
+      - path: group3/pasted__pCube1/transform3
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCube1 1
+        weight: 1
+      - path: group4/pasted__pCube1 1/transform2
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: pCone1
+        weight: 1
+      - path: pCone1/transform1
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform4
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform5
+        weight: 1
+      - path: pCylinder2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

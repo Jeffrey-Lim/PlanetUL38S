@@ -7,7 +7,11 @@ public class Weapon : MonoBehaviour {
 	private Transform player, playerCam, gunPoint, centerPoint;
 	private Text ammoAmount;
 	private GameObject machetePanel, bowPanel, pistolPanel, revolverPanel, shotgunPanel, grenadePanel;
-	private GameObject[] panels;
+	private GameObject macheteWeapon, bowWeapon, pistolWeapon, revolverWeapon, shotgunWeapon, grenadeWeapon;
+	//private int aimType; //0 = Geen, 1 = Boog, 2 = Pistool & Revolver, 3 = Shotgun & Granaatwerper
+	private Animator anim, bowAnim;
+	private Collider macheteHitbox;
+	private GameObject[] panels, weapons;
 	public GameObject impactEffect, arrowPrefab, grenadePrefab;
 	private GameObject shotgunRange;
 	public static int currentWeapon, lastWeapon;
@@ -28,8 +32,11 @@ public class Weapon : MonoBehaviour {
 	private AudioSource reloadSource;
 	private AudioSource shootSource;
 
+	private List<GameObject> beenHit;
+
 	void Start() {
 		player = GameObject.Find ("Player").transform;
+		anim = player.GetComponent<Animator> ();
 		playerCam = GameObject.Find ("Player Camera").transform;
 		gunPoint = GameObject.Find ("Gun Point").transform;
 		reloadSource = GameObject.Find("Reload Sound").GetComponent<AudioSource> ();
@@ -38,6 +45,23 @@ public class Weapon : MonoBehaviour {
 		shotgunRange = GameObject.Find ("Shotgun Range");
 		shotgunRange.SetActive (false);
 
+		//De wapens als gameobject in je hand
+		macheteWeapon = GameObject.Find("Machete Weapon");
+		macheteHitbox = macheteWeapon.GetComponent<Collider> ();
+		macheteHitbox.enabled = true;
+		bowWeapon = GameObject.Find("Bow Weapon");
+		bowAnim = bowWeapon.GetComponent<Animator> ();
+		pistolWeapon = GameObject.Find("10mm Pistol Weapon");
+		revolverWeapon = GameObject.Find("Revolver Weapon");
+		shotgunWeapon = GameObject.Find("Shotgun Weapon");
+		grenadeWeapon = GameObject.Find("Grenade Weapon");
+
+		weapons = new GameObject[] { macheteWeapon, bowWeapon, pistolWeapon, revolverWeapon, shotgunWeapon, grenadeWeapon };
+		/*foreach (GameObject x in weapons) {
+			x.SetActive (false);
+		}*/
+
+		//GUI Spul
 		ammoAmount = GameObject.Find ("Ammo Amount").GetComponent<Text> ();
 		machetePanel = GameObject.Find ("Machete Panel");
 		bowPanel = GameObject.Find ("Bow Panel");
@@ -52,6 +76,8 @@ public class Weapon : MonoBehaviour {
 		maxMagazine = SaveFile.maxMagazine;
 		inMagazine = new int[] {Mathf.Clamp(currentAmmo[0], 0, 1), Mathf.Clamp(currentAmmo[1], 0, 10), Mathf.Clamp(currentAmmo[2], 0, 6), Mathf.Clamp(currentAmmo[3], 0, 4), Mathf.Clamp(currentAmmo[4], 0, 1)};
 		lastWeapon = currentWeapon;
+
+		beenHit = new List<GameObject> ();
 	}
 
 	void Update () {
@@ -63,10 +89,18 @@ public class Weapon : MonoBehaviour {
 		currentWeapon = InputManager.currentWeapon;
 		if (currentWeapon != lastWeapon) {
 			reloading = false;
+			anim.SetInteger ("Reload Type", 0);
 			reloadSource.Stop ();
 			lastWeapon = currentWeapon;
 			inMagazine [0] = 0;
 		}
+
+		foreach (GameObject x in weapons) {
+			x.SetActive (false);
+		}
+		weapons [currentWeapon - 1].SetActive (true);
+
+		anim.SetInteger ("Aim Type", 0);
 
 		if (currentWeapon == 5) {
 			shotgunRange.SetActive (true);
@@ -86,7 +120,10 @@ public class Weapon : MonoBehaviour {
 			ammoAmount.text = inMagazine [currentWeapon - 2].ToString () + "/" + currentAmmo [currentWeapon - 2].ToString ();
 		}
 			
+		//weapons [currentWeapon - 1].SetActive (true);
+
 		if (reloading == true) {
+			anim.SetInteger ("Reload Type", currentWeapon - 1);
 			draw = 0f;
 			canFire = false;
 			return;
@@ -95,6 +132,7 @@ public class Weapon : MonoBehaviour {
 		if (currentWeapon != 1) {
 			if (currentAmmo [currentWeapon - 2] >= 1 && (inMagazine [currentWeapon - 2] == 0 || InputManager.reload.Pressed == true) && reloading == false && inMagazine [currentWeapon - 2] != maxMagazine [currentWeapon - 2]) {
 				reloading = true;
+				anim.SetInteger ("Reload Type", currentWeapon - 1);
 				StartCoroutine (Reload (currentWeapon));
 				return;
 			}
@@ -103,13 +141,34 @@ public class Weapon : MonoBehaviour {
 		switch (currentWeapon) {
 		case 1: //Machette
 			damage = 50f;
-			force = 200f;
+			force = 100f;
+
+			if (InputManager.fire.Pressed == true) { 
+				anim.SetTrigger ("Slash");
+			}
+
+			if (anim.GetCurrentAnimatorStateInfo (2).IsName ("1st Slash") || anim.GetCurrentAnimatorStateInfo (2).IsName ("2nd Slash")) {
+				foreach (Collider col in macheteHitbox.GetComponent<MacheteCollision> ().colliders) {
+					if (!beenHit.Contains(col.gameObject)) {
+						beenHit.Add (col.gameObject);
+						if (col.GetComponent<Breakable> () != null) {
+							col.GetComponent<Breakable> ().TakeDamage (damage);
+						}
+						if (col.attachedRigidbody != null) {
+							col.attachedRigidbody.AddForce ((macheteWeapon.transform.position - player.position).normalized * force);
+						}
+						StartCoroutine ( canHit (col.gameObject));
+					}
+				}
+			}
+
 			break;
 		case 2: //Pijl en Boog
 			damage = 10f;
 			force = 100f;
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
+				anim.SetInteger ("Aim Type", 1);
 
 				//Als je terwijl de boog gespannen is op herladen drukt, annuleer je het schieten
 				if ((InputManager.reload.Pressed && draw > 0) || canFire == false) {
@@ -122,6 +181,8 @@ public class Weapon : MonoBehaviour {
 				//Hoe langer je de boog aanspant, hoe verder de pijl komt
 				if (InputManager.fire.Hold && canFire == true) {
 					draw += 1.5f * Time.deltaTime;
+					anim.SetFloat ("Bow Draw", draw);
+					bowAnim.SetFloat ("Bow Draw", draw);
 				}
 				if (InputManager.fire.Release && draw > 0.2f) {
 					if (inMagazine [currentWeapon - 2] >= 1) {
@@ -130,6 +191,8 @@ public class Weapon : MonoBehaviour {
 						arrow.GetComponent<Rigidbody> ().AddForce (gunPoint.forward * force * draw);
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						anim.SetTrigger ("Shoot");
+						bowAnim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
 					}
@@ -156,6 +219,7 @@ public class Weapon : MonoBehaviour {
 			}
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
+				anim.SetInteger ("Aim Type", 2);
 				//Je schiet op het punt dat in het midden van het zicht van de camera zit
 				aimRay.origin = playerCam.position;
 				aimRay.direction = playerCam.forward;
@@ -163,6 +227,7 @@ public class Weapon : MonoBehaviour {
 					if (currentAmmo[currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						anim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
 						if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
@@ -191,10 +256,12 @@ public class Weapon : MonoBehaviour {
 			force = 500f;
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
+				anim.SetInteger ("Aim Type", 3);
 				if (InputManager.fire.Pressed == true) { 
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						anim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
 						foreach (Collider col in shotgunRange.GetComponent<ShotgunCollision> ().colliders) {
@@ -221,10 +288,12 @@ public class Weapon : MonoBehaviour {
 			force = 100f;
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
+				anim.SetInteger ("Aim Type", 3);
 				if (InputManager.fire.Pressed == true) { 
 					if (currentAmmo [currentWeapon - 2] >= 1) {
 						currentAmmo [currentWeapon - 2]--;
 						inMagazine [currentWeapon - 2]--;
+						anim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
 						GameObject grenade = Instantiate (grenadePrefab, gunPoint.position, gunPoint.rotation) as GameObject;
@@ -244,20 +313,27 @@ public class Weapon : MonoBehaviour {
 			reloadSource.Play ();
 		} else {
 			reloading = true;
+			anim.SetInteger ("Reload Type", currentWeapon - 1);
 			yield return new WaitForSeconds (1);
 			inMagazine [0] = 1;
 			reloading = false;
+			anim.SetInteger ("Reload Type", 0);
 			yield break;
 		}
 		reloading = true;
-		Debug.Log ("Reloading");
+		anim.SetInteger ("Reload Type", currentWeapon - 1);
 		yield return new WaitForSeconds (reloadTime);
-		Debug.Log ("Done");
 		if (reloading == true) {
 			inMagazine [weapon - 2] = Mathf.Clamp (currentAmmo [weapon - 2], 0, maxMagazine [weapon - 2]); 
 			reloading = false;
+			anim.SetInteger ("Reload Type", 0);
 		} else {
 			yield break;
 		}
+	}
+
+	IEnumerator canHit (GameObject x) {
+		yield return new WaitForSeconds (0.5f);
+		beenHit.Remove (x);
 	}
 }

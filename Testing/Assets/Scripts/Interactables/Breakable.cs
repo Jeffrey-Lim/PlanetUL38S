@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //Eigenschappen voor objecten die beschadigd kunnen worden
 public class Breakable : MonoBehaviour {
@@ -7,16 +8,34 @@ public class Breakable : MonoBehaviour {
 	public float health;
 	private bool invincible;
 	private Rigidbody rb;
+	private Collider col;
+	private List<Rigidbody> ragdollRb;
+	private List<Collider> ragdollCol;
 	private Animator anim;
 
 	void Start () { 
 		anim = this.GetComponent<Animator> ();
+		col = this.GetComponent<Collider> ();
+		rb = this.GetComponent<Rigidbody> ();
 
-		if (GetComponent<Rigidbody> () != null) {
-			rb = GetComponent<Rigidbody> ();
-			//rb.isKinematic = data.isLiving;
-		} else {
-			rb = null;
+		ragdollRb = new List<Rigidbody> ();
+		ragdollCol = new List<Collider> ();
+
+		if (GetComponentsInChildren<Rigidbody> ().Length > 1 && GetComponentsInChildren<Collider> ().Length > 1) {
+			foreach (Rigidbody x in GetComponentsInChildren<Rigidbody> ()) {
+				if (!x.Equals (rb) && x.gameObject.name != "Machete Weapon") {
+					ragdollRb.Add (x);
+					x.isKinematic = true;
+					x.detectCollisions = false;
+				}
+			}
+
+			foreach (Collider x in GetComponentsInChildren<Collider> ()) {
+				if (!x.Equals (col) && x.gameObject.name != "Machete Weapon") {
+					ragdollCol.Add (x);
+					x.enabled = false;
+				}
+			}
 		}
 
 		//Zet health op -1 als het wel een Breakable component nodig heeft, maar niet moet kunnen breken
@@ -45,11 +64,24 @@ public class Breakable : MonoBehaviour {
 		}
 
 		if (data.isLiving == true) {
-			//Het is de bedoeling dat vijanden een ragdoll worden wanneer ze dood zijn, maar ik heb nog geen vijanden om het mee te testen
 			rb.isKinematic = false;
 			rb.constraints = RigidbodyConstraints.None;
-			if (anim != null) {
-				anim.SetTrigger ("dead");
+			anim.enabled = false;
+
+			if (ragdollRb.Count > 1) {
+				foreach (Rigidbody x in ragdollRb) {
+					x.isKinematic = false;
+					x.detectCollisions = true;
+				}
+				rb.isKinematic = true;
+				rb.detectCollisions = false;
+			}
+
+			if (ragdollCol.Count > 1) {
+				foreach (Collider x in ragdollCol) {
+					x.enabled = true;
+				}
+				col.enabled = false;
 			}
 		} else {
 			if (this.GetComponent<Explosive> () != null) {

@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 	private GameObject crosshair;
 	private Transform playerCam, centerPoint, targetPoint, player;
 	public static Transform target;
+	public float playerHeight = 3f;
 	private float distance = 100f;
 	private float mouseX, mouseY, minHeight = -30f, maxHeight = 90f;
 	public static int cameraMode = 0;
@@ -60,7 +61,7 @@ public class CameraController : MonoBehaviour {
 				toZoom = new Vector3 (0, 0, -8);
 				crosshair.SetActive (false);
 				//Het center point volgt het personage
-				centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+				centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
 			}
 			break;
 		case 1:
@@ -69,7 +70,7 @@ public class CameraController : MonoBehaviour {
 			crosshair.SetActive (true);
 			toZoom = new Vector3 (2, 0, -4);
 			//Het center point volgt het personage
-			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+			centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
 				break;
 		case 0:
 			minHeight = -30f;
@@ -77,7 +78,7 @@ public class CameraController : MonoBehaviour {
 			toZoom = new Vector3 (0, 0, -8);
 			crosshair.SetActive (false);
 			//Het center point volgt het personage
-			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+			centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
 			break;
 		case 3: 
 			minHeight = -50f;
@@ -85,13 +86,13 @@ public class CameraController : MonoBehaviour {
 			crosshair.SetActive (false);
 			toZoom = new Vector3 (2, 0, -6);
 			//Het center point volgt het personage
-			centerPoint.position = new Vector3 (player.position.x, player.position.y + 2f, player.position.z);
+			centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
 			break;
-		case 4: //Dialogen
+		/*case 4: //Dialogen
 			centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
 			toZoom = new Vector3 (0, 0, -8 - (target.position - player.position).magnitude);
 			crosshair.SetActive (false);
-			break;
+			break;*/
 		}
 		//Debug.Log (cameraMode);
 
@@ -107,7 +108,7 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate () {
 		//Camera collision
-		if (Physics.Linecast (player.position - centerPoint.forward * 0.5f, targetPoint.position, out hit, ~(1 << 8 |1 << 4)) && cameraMode != 2) {
+		if (Physics.Linecast (centerPoint.position - centerPoint.forward * 0.5f, targetPoint.position, out hit, ~(1 << 8 |1 << 4)) && cameraMode != 2) {
 			if (hit.transform.GetComponent<Breakable> () != null) {
 
 			} else {

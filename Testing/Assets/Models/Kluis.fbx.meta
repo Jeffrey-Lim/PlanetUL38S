@@ -87,7 +87,7 @@ ModelImporter:
     4300002: pCylinder7
     6400000: pCube1
     6400002: pCylinder7
-    7400000: Take 001
+    7400000: Locker Open
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -109,7 +109,109 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Locker Open
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group/pasted__pCylinder1
+        weight: 1
+      - path: group/pasted__pCylinder1/transform9
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/pasted__pCylinder4
+        weight: 1
+      - path: group1/pasted__pCylinder4/transform4
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group2/pasted__pCylinder4 1
+        weight: 1
+      - path: group2/pasted__pCylinder4 1/transform6
+        weight: 1
+      - path: group3
+        weight: 1
+      - path: group3/pasted__group2
+        weight: 1
+      - path: group3/pasted__group2/pasted__pasted__pCylinder4
+        weight: 1
+      - path: group3/pasted__group2/pasted__pasted__pCylinder4/transform3
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pasted__pCylinder4 2
+        weight: 1
+      - path: group4/pasted__pCylinder4 2/transform7
+        weight: 1
+      - path: group5
+        weight: 1
+      - path: group5/pasted__group4
+        weight: 1
+      - path: group5/pasted__group4/pasted__pasted__pCylinder4 1
+        weight: 1
+      - path: group5/pasted__group4/pasted__pasted__pCylinder4 1/transform5
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform10
+        weight: 1
+      - path: pCylinder1
+        weight: 1
+      - path: pCylinder1/transform11
+        weight: 1
+      - path: pCylinder2
+        weight: 1
+      - path: pCylinder2/transform1
+        weight: 1
+      - path: pCylinder3
+        weight: 1
+      - path: pCylinder3/transform2
+        weight: 1
+      - path: pCylinder4
+        weight: 1
+      - path: pCylinder4/transform8
+        weight: 1
+      - path: pCylinder5
+        weight: 1
+      - path: pCylinder5/transform12
+        weight: 1
+      - path: pCylinder6
+        weight: 1
+      - path: pCylinder6/transform13
+        weight: 1
+      - path: pCylinder7
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

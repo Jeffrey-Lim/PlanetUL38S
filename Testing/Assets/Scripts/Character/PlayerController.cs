@@ -18,16 +18,18 @@ public class PlayerController : MonoBehaviour {
 	Vector3 movementDir, movement;
 	Ray aimRay;
 	RaycastHit aimHit;
+	Animator anim;
 
 	void Start() {
 		centerPoint = GameObject.Find ("Center Point").transform;
 		player = GameObject.Find ("Player").transform;
+		anim = player.GetComponent<Animator> ();
 		playerCam = GameObject.Find ("Player Camera").transform;
 	}
 
 	//Pauper functie die checkt of je op de grond staat met een linecast
 	bool IsGrounded () {
-		return Physics.Linecast (player.transform.position, player.transform.position - Vector3.up * 2f);
+		return Physics.Linecast (player.transform.position + Vector3.up * 2f, player.transform.position - Vector3.up * 2f);
 	}
 
 	void Update () {
@@ -73,15 +75,21 @@ public class PlayerController : MonoBehaviour {
 			//Loopsnelheden bij rennen en richten
 			if (running == true) {
 				moveSpeed = 30f;
+				anim.SetInteger ("Movement Type", 2);
 			} else if (cameraMode == 1) {
 				moveSpeed = 10f;
+				anim.SetInteger ("Movement Type", 3);
 			} else {
 				moveSpeed = 15f;
+				anim.SetInteger ("Movement Type", 1);
 			}
+
+			anim.SetBool ("Air Time", !IsGrounded ());
 
 			//Springen
 			if (InputManager.jump.Pressed == true && IsGrounded () == true) {
 				player.GetComponent<Rigidbody> ().velocity += new Vector3 (0, jumpPower, 0);
+				anim.SetTrigger ("Jump");
 			}
 			break;
 		case 1: // Bij rustige stukjes
@@ -95,7 +103,9 @@ public class PlayerController : MonoBehaviour {
 			movementDir = Vector3.zero;
 			break;
 		}
-			
+		if (movementDir == Vector3.zero) {
+			anim.SetInteger ("Movement Type", 0);
+		}
 		movement = movementDir * moveSpeed;
 		//Draai de bewegingen relatief naar de draaing van het personage
 		movement = Quaternion.Euler (0, centerPoint.eulerAngles.y, 0) * movement;
