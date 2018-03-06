@@ -6,6 +6,7 @@ using System.Collections;
 public class Interact : MonoBehaviour {
 	private Transform player;
 	private GameObject interactionInfo;
+	private AudioSource eatSource;
 	private Text actionText;
 	private Text infoText;
 	private Text addText;
@@ -24,6 +25,7 @@ public class Interact : MonoBehaviour {
 		addText = GameObject.Find ("Additional Text").GetComponent<Text> ();
 		otherText = GameObject.Find ("Other Text").GetComponent<Text> ();
 		//preview = GameObject.Find ("Preview Image").GetComponent<RawImage> ();
+		eatSource = GameObject.Find("Eat Sound Source").GetComponent<AudioSource> ();
 
 		interactionInfo.SetActive (false);
 
@@ -95,6 +97,7 @@ public class Interact : MonoBehaviour {
 						if (player.GetComponent<Breakable> ().health != GameObject.Find ("Player").GetComponent<Breakable> ().data.health) {
 							actionText.text = "Eat";
 							if (InputManager.interact.Pressed == true) {
+								eatSource.Play ();
 
 								if (data.restoreHealth != 0f) {
 									player.GetComponent<Breakable> ().health += data.restoreHealth;

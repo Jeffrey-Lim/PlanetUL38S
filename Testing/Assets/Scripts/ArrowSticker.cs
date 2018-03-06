@@ -38,6 +38,7 @@ public class ArrowSticker : MonoBehaviour {
 	//Zorgt ervoor dat pijlen in objecten blijven steken
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.name != "Arrow(Clone)" && col.gameObject.name != "Player" && transform.parent == null && col.relativeVelocity.sqrMagnitude >= minVelocity) {
+			GetComponent<AudioSource> ().Play ();
 			isSticking = true;
 			//Zet het object waar de pijl in steekt als parent
 			transform.parent = col.transform;

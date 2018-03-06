@@ -19,11 +19,13 @@ public class PlayerController : MonoBehaviour {
 	Ray aimRay;
 	RaycastHit aimHit;
 	Animator anim;
+	AudioSource stepSource;
 
 	void Start() {
 		centerPoint = GameObject.Find ("Center Point").transform;
 		player = GameObject.Find ("Player").transform;
 		anim = player.GetComponent<Animator> ();
+		stepSource = player.GetComponent<AudioSource> ();
 		playerCam = GameObject.Find ("Player Camera").transform;
 	}
 
@@ -76,20 +78,30 @@ public class PlayerController : MonoBehaviour {
 			if (running == true) {
 				moveSpeed = 30f;
 				anim.SetInteger ("Movement Type", 2);
+				if (stepSource.isPlaying == false) {
+					stepSource.Play ();
+				}
 			} else if (cameraMode == 1) {
 				moveSpeed = 10f;
 				anim.SetInteger ("Movement Type", 3);
 			} else {
 				moveSpeed = 15f;
 				anim.SetInteger ("Movement Type", 1);
+				if (stepSource.isPlaying == false) {
+					stepSource.Play ();
+				}
 			}
 
 			anim.SetBool ("Air Time", !IsGrounded ());
+			if (!IsGrounded ()) {
+				stepSource.Stop ();
+			}
 
 			//Springen
 			if (InputManager.jump.Pressed == true && IsGrounded () == true) {
 				player.GetComponent<Rigidbody> ().velocity += new Vector3 (0, jumpPower, 0);
 				anim.SetTrigger ("Jump");
+				stepSource.Stop ();
 			}
 			break;
 		case 1: // Bij rustige stukjes
@@ -105,6 +117,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (movementDir == Vector3.zero) {
 			anim.SetInteger ("Movement Type", 0);
+			stepSource.Stop ();
 		}
 		movement = movementDir * moveSpeed;
 		//Draai de bewegingen relatief naar de draaing van het personage

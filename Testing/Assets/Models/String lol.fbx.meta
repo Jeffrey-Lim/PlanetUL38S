@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: f2c8d8b0573371e40823c7b640df8e9e
+timeCreated: 1520366121
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bow:group
+    100002: bow:group1
+    100004: bow:group2
+    100006: bow:group3
+    100008: bow:pasted__group
+    100010: bow:pasted__pTorus1
+    100012: bow:pTorus1
+    100014: bowlatest:group
+    100016: bowlatest:group1
+    100018: bowlatest:group2
+    100020: bowlatest:group3
+    100022: bowlatest:group4
+    100024: bowlatest:group5
+    100026: bowlatest:joint11
+    100028: bowlatest:joint7
+    100030: bowlatest:joint8
+    100032: bowlatest:joint9
+    100034: bowlatest:pasted__group
+    100036: bowlatest:pasted__pasted__pCube1
+    100038: bowlatest:pasted__pCube1
+    100040: bowlatest:pasted__pTorus1
+    100042: bowlatest:pCube1
+    100044: bowlatest:pCylinder1
+    100046: bowlatest:pTorus1
+    100048: bowlatest:transform1
+    100050: bowlatest:transform2
+    100052: bowlatest:transform3
+    100054: group
+    100056: group1
+    100058: group2
+    100060: group3
+    100062: group4
+    100064: pasted__group
+    100066: pasted__group1
+    100068: pasted__pasted__group
+    100070: pasted__pCube1
+    100072: pasted__pCube1 1
+    100074: pCone1
+    100076: pCube1
+    100078: pCylinder1
+    100080: //RootNode
+    100082: transform1
+    100084: transform2
+    100086: transform3
+    100088: transform4
+    100090: transform5
+    400000: bow:group
+    400002: bow:group1
+    400004: bow:group2
+    400006: bow:group3
+    400008: bow:pasted__group
+    400010: bow:pasted__pTorus1
+    400012: bow:pTorus1
+    400014: bowlatest:group
+    400016: bowlatest:group1
+    400018: bowlatest:group2
+    400020: bowlatest:group3
+    400022: bowlatest:group4
+    400024: bowlatest:group5
+    400026: bowlatest:joint11
+    400028: bowlatest:joint7
+    400030: bowlatest:joint8
+    400032: bowlatest:joint9
+    400034: bowlatest:pasted__group
+    400036: bowlatest:pasted__pasted__pCube1
+    400038: bowlatest:pasted__pCube1
+    400040: bowlatest:pasted__pTorus1
+    400042: bowlatest:pCube1
+    400044: bowlatest:pCylinder1
+    400046: bowlatest:pTorus1
+    400048: bowlatest:transform1
+    400050: bowlatest:transform2
+    400052: bowlatest:transform3
+    400054: group
+    400056: group1
+    400058: group2
+    400060: group3
+    400062: group4
+    400064: pasted__group
+    400066: pasted__group1
+    400068: pasted__pasted__group
+    400070: pasted__pCube1
+    400072: pasted__pCube1 1
+    400074: pCone1
+    400076: pCube1
+    400078: pCylinder1
+    400080: //RootNode
+    400082: transform1
+    400084: transform2
+    400086: transform3
+    400088: transform4
+    400090: transform5
+    2300000: bow:pasted__pTorus1
+    2300002: bow:pTorus1
+    2300004: bowlatest:pasted__pTorus1
+    2300006: bowlatest:pTorus1
+    3300000: bow:pasted__pTorus1
+    3300002: bow:pTorus1
+    3300004: bowlatest:pasted__pTorus1
+    3300006: bowlatest:pTorus1
+    4300000: bow:pTorus1
+    4300002: bow:pasted__pTorus1
+    4300004: bowlatest:pCylinder1
+    4300006: bowlatest:pTorus1
+    4300008: bowlatest:pasted__pTorus1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: bowlatest:pCylinder1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 30
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

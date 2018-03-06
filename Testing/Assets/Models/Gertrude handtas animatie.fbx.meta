@@ -102,7 +102,7 @@ ModelImporter:
     400092: transform8
     400094: transform9
     4300000: top3
-    7400000: Take 001
+    7400000: Gertrude Bag Swing
     9500000: //RootNode
     13700000: top3
   materials:
@@ -125,7 +125,131 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Gertrude Bag Swing
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Astragal7_001
+        weight: 1
+      - path: Astragal7_001/transform11
+        weight: 1
+      - path: Astragal7_002
+        weight: 1
+      - path: Astragal7_002/transform16
+        weight: 1
+      - path: Astragal7_003
+        weight: 1
+      - path: Astragal7_003/transform13
+        weight: 1
+      - path: Astragal7_004
+        weight: 1
+      - path: Astragal7_004/transform14
+        weight: 1
+      - path: Character1_Reference
+        weight: 1
+      - path: front1
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group2
+        weight: 1
+      - path: group3
+        weight: 1
+      - path: group3/pCube11
+        weight: 1
+      - path: group4
+        weight: 1
+      - path: group4/pCube10
+        weight: 1
+      - path: group4/pCube10/transform5
+        weight: 1
+      - path: group4/pSphere1
+        weight: 1
+      - path: group4/pSphere1/transform6
+        weight: 1
+      - path: Group_001
+        weight: 1
+      - path: Group_001/transform9
+        weight: 1
+      - path: Group_002
+        weight: 1
+      - path: Group_002/transform10
+        weight: 1
+      - path: Group_003
+        weight: 1
+      - path: Group_003/transform12
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: nurbsSquare1
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform4
+        weight: 1
+      - path: pCube2SmoothProxyGroup
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform1
+        weight: 1
+      - path: pCube5
+        weight: 1
+      - path: pCube6
+        weight: 1
+      - path: pCube6/transform2
+        weight: 1
+      - path: pCube7
+        weight: 1
+      - path: pCube7/transform3
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      - path: pSphere2/transform7
+        weight: 1
+      - path: pSphere3
+        weight: 1
+      - path: pSphere3/transform8
+        weight: 1
+      - path: top1
+        weight: 1
+      - path: top2
+        weight: 1
+      - path: top2/transform15
+        weight: 1
+      - path: top3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour {
 	private GameObject machetePanel, bowPanel, pistolPanel, revolverPanel, shotgunPanel, grenadePanel;
 	private GameObject macheteWeapon, bowWeapon, pistolWeapon, revolverWeapon, shotgunWeapon, grenadeWeapon;
 	//private int aimType; //0 = Geen, 1 = Boog, 2 = Pistool & Revolver, 3 = Shotgun & Granaatwerper
-	private Animator anim, bowAnim;
+	private Animator anim, bowAnim, arrowAnim;
 	private Collider macheteHitbox;
 	private GameObject[] panels, weapons;
 	public GameObject impactEffect, arrowPrefab, grenadePrefab;
@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour {
 		macheteHitbox.enabled = true;
 		bowWeapon = GameObject.Find("Bow Weapon");
 		bowAnim = bowWeapon.GetComponent<Animator> ();
+		arrowAnim = GameObject.Find("Arrow Weapon").GetComponent<Animator> ();
 		pistolWeapon = GameObject.Find("10mm Pistol Weapon");
 		revolverWeapon = GameObject.Find("Revolver Weapon");
 		shotgunWeapon = GameObject.Find("Shotgun Weapon");
@@ -147,7 +148,7 @@ public class Weapon : MonoBehaviour {
 				anim.SetTrigger ("Slash");
 			}
 
-			if (anim.GetCurrentAnimatorStateInfo (2).IsName ("1st Slash") || anim.GetCurrentAnimatorStateInfo (2).IsName ("2nd Slash")) {
+			if (anim.GetCurrentAnimatorStateInfo (1).IsName ("1st Slash") || anim.GetCurrentAnimatorStateInfo (1).IsName ("2nd Slash")) {
 				foreach (Collider col in macheteHitbox.GetComponent<MacheteCollision> ().colliders) {
 					if (!beenHit.Contains(col.gameObject)) {
 						beenHit.Add (col.gameObject);
@@ -173,6 +174,9 @@ public class Weapon : MonoBehaviour {
 				//Als je terwijl de boog gespannen is op herladen drukt, annuleer je het schieten
 				if ((InputManager.reload.Pressed && draw > 0) || canFire == false) {
 					draw -= 2f * Time.deltaTime;
+					anim.SetFloat ("Bow Draw", draw);
+					bowAnim.SetFloat ("Bow Draw", draw);
+					arrowAnim.SetFloat ("Bow Draw", draw);
 					canFire = false;
 				}
 				if (draw <= 0 && !InputManager.fire.Hold) {
@@ -183,6 +187,7 @@ public class Weapon : MonoBehaviour {
 					draw += 1.5f * Time.deltaTime;
 					anim.SetFloat ("Bow Draw", draw);
 					bowAnim.SetFloat ("Bow Draw", draw);
+					arrowAnim.SetFloat ("Bow Draw", draw);
 				}
 				if (InputManager.fire.Release && draw > 0.2f) {
 					if (inMagazine [currentWeapon - 2] >= 1) {
@@ -193,16 +198,23 @@ public class Weapon : MonoBehaviour {
 						inMagazine [currentWeapon - 2]--;
 						anim.SetTrigger ("Shoot");
 						bowAnim.SetTrigger ("Shoot");
+						arrowAnim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
 					}
 					draw = 0f;
 				} else if (InputManager.fire.Release && draw <= 0.2f) {
 					draw -= 3f * Time.deltaTime;
+					anim.SetFloat ("Bow Draw", draw);
+					bowAnim.SetFloat ("Bow Draw", draw);
+					arrowAnim.SetFloat ("Bow Draw", draw);
 					canFire = false;
 				}
 			} else {
 				draw = 0f;
+				anim.SetFloat ("Bow Draw", draw);
+				bowAnim.SetFloat ("Bow Draw", draw);
+				arrowAnim.SetFloat ("Bow Draw", draw);
 				canFire = true;
 			}
 			draw = Mathf.Clamp (draw, 0f, 1f);
