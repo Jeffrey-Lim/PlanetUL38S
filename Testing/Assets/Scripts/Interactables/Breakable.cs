@@ -81,6 +81,17 @@ public class Breakable : MonoBehaviour {
 				foreach (Collider x in ragdollCol) {
 					x.enabled = true;
 				}
+
+				//Zorgt ervoor dat pijlen die in het voorwerp zijn geschoten niet verdwijnen;
+				GameObject[] Arrows = GameObject.FindGameObjectsWithTag ("Arrow");
+				foreach (GameObject Arrow in Arrows) {
+					if (Arrow.transform.parent != null) {
+						if (Arrow.transform.parent.gameObject == col.gameObject) {
+							Arrow.transform.parent = null;
+							Arrow.GetComponent<ArrowSticker> ().isSticking = false;
+						}
+					}
+				}
 				col.enabled = false;
 			}
 		} else {

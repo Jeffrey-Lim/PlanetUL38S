@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 400010}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 82: {fileID: 82000011257688024}
+  - 82: {fileID: 82000013049299606}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -16102,7 +16102,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100010}
   m_IsPrefabParent: 1
---- !u!82 &82000011257688024
+--- !u!82 &82000013049299606
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
