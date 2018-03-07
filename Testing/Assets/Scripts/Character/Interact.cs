@@ -152,7 +152,7 @@ public class Interact : MonoBehaviour {
 						infoBox.SetActive (false);
 						if (manager.inConversation == false && dialogue.canTalk <= 0f) {
 							if (InputManager.interact.Pressed == true) {
-								manager.StartDialogue (data, dialogue, target);
+								manager.StartDialogue (data, dialogue);
 							}
 						}
 					}

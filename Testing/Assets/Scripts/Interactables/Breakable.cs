@@ -63,6 +63,16 @@ public class Breakable : MonoBehaviour {
 			}
 		}
 
+		if (GetComponent<GetrudeIsABitch> () != null) {
+			GetComponent<GetrudeIsABitch> ().enabled = false;
+		}
+		if (GetComponent<EnemyScript> () != null) {
+			GetComponent<EnemyScript> ().enabled = false;
+		}
+		if (GetComponent<Dialogue> () != null) {
+			GetComponent<Dialogue> ().enabled = false;
+		}
+
 		if (data.isLiving == true) {
 			rb.isKinematic = false;
 			rb.constraints = RigidbodyConstraints.None;

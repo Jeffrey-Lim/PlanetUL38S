@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour {
 		dialogueBox.SetActive (false);
 	}
 
-	public void StartDialogue (DialogueData data, Dialogue dialogue, Transform target) {
+	public void StartDialogue (DialogueData data, Dialogue dialogue) {
 		names.Clear ();
 		sentences.Clear ();
 		inConversation = true;
