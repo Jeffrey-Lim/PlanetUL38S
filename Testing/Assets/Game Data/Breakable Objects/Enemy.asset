@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b653bfbfeb41a47b47f899d7a806d7, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  health: 10
+  health: 50
   isLiving: 1
   targetDistance: 50
   brokenPrefab: {fileID: 0}

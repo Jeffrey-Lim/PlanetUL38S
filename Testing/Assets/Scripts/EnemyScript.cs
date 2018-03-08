@@ -11,7 +11,7 @@ public class EnemyScript : MonoBehaviour {
 	private float minwalkdistance = 7f;
 	private float maxwalkdistance = 30f;
 	private float shootdistance = 13f;
-	private float shootdelay = 2f;
+	private float shootdelay = 0.5f;
 
 	private float lastfiretime;
 	private bool shoot;

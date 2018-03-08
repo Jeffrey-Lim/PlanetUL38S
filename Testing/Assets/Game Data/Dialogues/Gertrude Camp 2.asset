@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: Gertrude Camp 2
+  m_EditorClassIdentifier: 
+  partnerName: Gertrude
+  dialogueParts:
+  - name: Gertrude
+    speech: Whew, that was a lot of enemies!
+  - name: Fred
+    speech: Yeah, tell me. I was the only one fighting. It might have helped a bit
+      if you slapped them like you slapped me back then.
+  - name: Gertrude
+    speech: '*Whack*'
+  - name: Fred
+    speech: Ow, okay, okay, I'm sorry.
+  - name: Gertrude
+    speech: Don't you dare to offend me again.
+  - name: Fred
+    speech: Okay, okay, sheez.

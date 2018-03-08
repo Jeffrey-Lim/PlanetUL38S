@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: Gertrude Beach
+  m_EditorClassIdentifier: 
+  partnerName: Gertrude
+  dialogueParts:
+  - name: Fred
+    speech: Why did we again think it was a good idea to go to the beach? There's
+      nothing here but enemies!
+  - name: Gertrude
+    speech: Maybe you need to  follow the rocks.
+  - name: Fred
+    speech: Oh, yeah, right. Of course that would work.
+  - name: Gertrude
+    speech: Hey, just do it! You never know what you could find.
+  - name: Fred
+    speech: Well, alright then.

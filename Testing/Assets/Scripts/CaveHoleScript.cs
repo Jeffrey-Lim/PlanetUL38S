@@ -3,10 +3,14 @@ using System.Collections;
 
 public class CaveHoleScript : MonoBehaviour {
 
-	public Collider player; // assign in inspector?
+	private Collider player; // assign in inspector?
 	public TerrainCollider tCollider; // assign in inspector?
 
 	public GameObject groupHide;
+
+	void Awake () {
+		player = GameObject.Find ("Player").GetComponent <Collider> ();
+	}
 
 	void OnTriggerEnter (Collider c) {
 		if (c.tag == "Player") {

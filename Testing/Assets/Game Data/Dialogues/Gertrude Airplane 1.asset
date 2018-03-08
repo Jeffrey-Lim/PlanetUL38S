@@ -18,7 +18,7 @@ MonoBehaviour:
   - name: Fred
     speech: Well, what else was your plan? Implode?
   - name: Gertrude
-    speech: No, no, of course not. But mayby you could repair it or something.
+    speech: No, no, of course not. But maybe you could repair it or something.
   - name: Fred
     speech: Yeah. Repairing an airplane in seconds. Seems legit.
   - name: Gertrude

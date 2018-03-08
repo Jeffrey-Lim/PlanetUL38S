@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: The End
+  m_EditorClassIdentifier: 
+  partnerName: Narrator
+  dialogueParts:
+  - name: Narrator
+    speech: And so, Fred and Gertrude were rescued from Planet UL-38/S by Donald Trump
+      himself. They told him about their findings of the yet unknown planet. Trump
+      liked the idea of owning his very own habitable planet, so he decided to colonise
+      it. Will he succeed... or will Kim Jong-un be first? You'll find out in the
+      sequel "The battle for Planet UL-38/S". But for now, Fred and Gertrude's story
+      has come to an end
+  - name: Narrator
+    speech: Thank you for playing! If you liked our game, make sure to tell that to
+      Mr. van der Linden and the developers.

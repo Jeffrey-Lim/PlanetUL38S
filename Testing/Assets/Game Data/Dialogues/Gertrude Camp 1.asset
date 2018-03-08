@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: Gertrude Camp 1
+  m_EditorClassIdentifier: 
+  partnerName: Gertrude
+  dialogueParts:
+  - name: Gertrude
+    speech: Watch out for those <b>aliens</b> over there! They look kinda dangerous.
+  - name: Fred
+    speech: With my <b>weapons</b>, my machette, bow, 10mm pistol, revolver, shotgun
+      and grenade launcher I can take 'em out easily.
+  - name: Gertrude
+    speech: Wait, what? Where did you get those weapons? How long do you have them?
+      Are these all in your pocket?
+  - name: Fred
+    speech: 'A smart man once said: "Never go outside without your machette, bow,
+      10mm pistol, revolver, shotgun and grenade launcher."'
+  - name: Gertrude
+    speech: Wow, that's overly specific.
+  - name: Fred
+    speech: Yeah, I know. It might sound a bit stupid, but where are your weapons
+      now that you need them?
+  - name: Gertrude
+    speech: Yeah, I guess you're right.

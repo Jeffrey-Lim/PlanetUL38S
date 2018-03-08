@@ -138,7 +138,7 @@ public class Weapon : MonoBehaviour {
 
 		switch (currentWeapon) {
 		case 1: //Machette
-			damage = 50f;
+			damage = 40f;
 			force = 100f;
 
 			if (InputManager.fire.Pressed == true) { 
@@ -162,7 +162,7 @@ public class Weapon : MonoBehaviour {
 
 			break;
 		case 2: //Pijl en Boog
-			damage = 10f;
+			damage = 30f;
 			force = 100f;
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {
@@ -220,10 +220,10 @@ public class Weapon : MonoBehaviour {
 		case 4: //Revolver
 			//De revolver is sterker dan het pistool
 			if (currentWeapon == 3) {
-				damage = 10f;
+				damage = 30f;
 				force = 100f;
 			} else if (currentWeapon == 4) {
-				damage = 20f;
+				damage = 40f;
 				force = 100f;
 			}
 
@@ -239,7 +239,7 @@ public class Weapon : MonoBehaviour {
 						anim.SetTrigger ("Shoot");
 						shootSource.clip = shootingSounds [currentWeapon - 1];
 						shootSource.Play ();
-						if (Physics.Raycast (aimRay, out aimHit, 100f, ~(1 << 4))) {
+						if (Physics.Raycast (aimRay, out aimHit, 10000f, ~(1 << 4))) {
 							if (aimHit.transform.gameObject.name != "Shotgun Range") {
 								Transform target = aimHit.transform;
 								GameObject impactGO = Instantiate (impactEffect, aimHit.point, Quaternion.LookRotation (aimHit.normal)) as GameObject;
@@ -261,7 +261,7 @@ public class Weapon : MonoBehaviour {
 			}
 			break;
 		case 5: //Shotgun
-			damage = 30f;
+			damage = 70f;
 			force = 500f;
 
 			if ((PlayerController.playerstate == 0 && InputManager.aim.Hold == true)) {

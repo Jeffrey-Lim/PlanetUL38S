@@ -24,10 +24,15 @@ public class InputManager : MonoBehaviour {
 	//controlmode: Muis en Toetsenbord of Controller
 	//cameraMode: 0 = normaal, 1 = richten, 2 = z-targetting, 3 = Bij rustige stukjes, 4 = Geen controle
 	public static bool running = false;
-	public static InputKey jump, aim, fire, reload, melee, run, interact, pause, inventory;
+	public static InputKey jump, aim, fire, reload, melee, run, interact, pause, inventory, hideui;
 	public static float moveXraw, moveYraw;
 	public static Vector3 movementDir;
 	public static int currentWeapon = 3;
+	private GameObject canvas;
+
+	void Awake () {
+		canvas = GameObject.Find ("Canvas");
+	}
 
 	void Update () {
 		if (controlMode == 0) { // Muis en Toetsenbord
@@ -40,6 +45,7 @@ public class InputManager : MonoBehaviour {
 			interact = new InputKey ("Interact");
 			pause = new InputKey ("Pause");
 			inventory = new InputKey ("Open Inventory");
+			hideui = new InputKey ("Hide UI");
 
 			camX = Input.GetAxis("Mouse X") * mouseSensitivity;
 			camY = -Input.GetAxis ("Mouse Y") * mouseSensitivity;
@@ -64,7 +70,7 @@ public class InputManager : MonoBehaviour {
 			} else if (Input.GetButtonDown ("W5")) {
 				currentWeapon = 5; //Shotgun
 			} else if (Input.GetButtonDown ("W6")) {
-				currentWeapon = 6; //Granaat(werper)
+				currentWeapon = 6; //Granaatwerper
 			}
 
 			//Stel de cameramodus in
@@ -79,7 +85,7 @@ public class InputManager : MonoBehaviour {
 					cameraMode = 0;
 				}
 			} else if (PlayerController.playerstate == 3) {
-				cameraMode = 3;
+				cameraMode = 0;
 			} else {
 				cameraMode = 4;
 			}
@@ -106,6 +112,10 @@ public class InputManager : MonoBehaviour {
 				if (reload.Pressed == true) {
 					FindObjectOfType<DialogueManager> ().EndDialogue(DialogueManager.current);
 				}
+			}
+
+			if (hideui.Pressed) {
+				canvas.SetActive (!canvas.activeInHierarchy);
 			}
 
 		} else if (controlMode == 1) { //Controller

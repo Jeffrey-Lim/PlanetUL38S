@@ -88,11 +88,14 @@ public class CameraController : MonoBehaviour {
 			//Het center point volgt het personage
 			centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
 			break;
-		/*case 4: //Dialogen
-			centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
-			toZoom = new Vector3 (0, 0, -8 - (target.position - player.position).magnitude);
+		case 4: //Skydive
+			minHeight = -30f;
+			target = null;
+			toZoom = new Vector3 (0, 0, -8);
 			crosshair.SetActive (false);
-			break;*/
+			//Het center point volgt het personage
+			centerPoint.position = new Vector3 (player.position.x, player.position.y + playerHeight, player.position.z);
+			break;
 		}
 		//Debug.Log (cameraMode);
 

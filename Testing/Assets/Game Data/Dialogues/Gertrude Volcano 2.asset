@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: Gertrude Volcano 2
+  m_EditorClassIdentifier: 
+  partnerName: Gertrude
+  dialogueParts:
+  - name: Gertrude
+    speech: Quick, climb. The lava's rising!
+  - name: Fred
+    speech: Thank you, Captain Obvious.
+  - name: Gertrude
+    speech: Now is not a good time to make jokes. Just climb up. You should also pay
+      attention to those <b>targets</b> here and there. If you hit them, maybe something
+      good will happen.
+  - name: Fred
+    speech: Can you please stop telling me things I already know?

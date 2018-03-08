@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 	private Transform centerPoint, player, playerCam;
@@ -35,6 +36,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+		if (SceneManager.GetActiveScene ().name == "Airplane Fall") {
+			playerstate = 3;
+			anim.SetBool ("Is Skydiving", true);
+		} else {
+			anim.SetBool ("Is Skydiving", false);
+		}
 		movementDir = InputManager.movementDir;
 		running = InputManager.running;
 		cameraMode = InputManager.cameraMode;
@@ -114,7 +121,12 @@ public class PlayerController : MonoBehaviour {
 		case 2: //Dialoog of ragdoll: geen besturing
 			movementDir = Vector3.zero;
 			break;
+		case 3: //Skydive
+			moveSpeed = 100f;
+			player.localRotation = Quaternion.Euler (new Vector3 ( movementDir.z, -1 * movementDir.x, 0f) * 30f);
+			break;
 		}
+
 		if (movementDir == Vector3.zero) {
 			anim.SetInteger ("Movement Type", 0);
 			stepSource.Stop ();
