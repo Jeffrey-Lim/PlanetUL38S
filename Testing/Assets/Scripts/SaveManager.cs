@@ -57,6 +57,6 @@ public class SaveManager : MonoBehaviour {
 
 	public void NewGame () {
 		PlayerPrefs.DeleteAll ();
-		SceneManager.LoadScene ("Debug Room");
+		SceneManager.LoadScene ("Airplane 1");
 	}
 }
