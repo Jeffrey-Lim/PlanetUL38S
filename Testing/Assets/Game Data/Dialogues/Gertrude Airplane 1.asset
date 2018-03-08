@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2bfb86c86b12d4c80e4398ca8e5c8c, type: 3}
+  m_Name: Gertrude Airplane 1
+  m_EditorClassIdentifier: 
+  partnerName: Gertrude
+  dialogueParts:
+  - name: Gertrude
+    speech: You want to jump from here? Are you out of your mind???
+  - name: Fred
+    speech: Well, what else was your plan? Implode?
+  - name: Gertrude
+    speech: No, no, of course not. But mayby you could repair it or something.
+  - name: Fred
+    speech: Yeah. Repairing an airplane in seconds. Seems legit.
+  - name: Gertrude
+    speech: 'Anyway, if I were you, I would get <b>an oxygen cylinder</b> and <b>a
+      parachute</b>. '
+  - name: Fred
+    speech: You don't say?
+  - name: Gertrude
+    speech: I'm just giving you advise! I thought there were still some in the luggage
+      room. Open <b>the hatch</b> to get there.
+  - name: Fred
+    speech: I know, I know.
