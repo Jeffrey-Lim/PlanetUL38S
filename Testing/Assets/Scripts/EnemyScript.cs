@@ -1,91 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using System.Collections;
 
-
-public class EnemyScript : MonoBehaviour 
-{
-	public Transform playertransform;
-	public int speed = 2;
-	public float minwalkdistance = 7f;
-	public float maxwalkdistance = 30f;
-	public float shootdistance = 13f;
+public class EnemyScript : MonoBehaviour {
 	public GameObject bullet;
-	public float shootdelay = 2f;
-	public float lastfiretime;
-	public GameObject enemybulletemittor;
-	public NavMeshAgent agent;
-	public int health;
-	public Animator anim;
-	public bool walking;
-	Rigidbody tijdelijke_rigidbody;
-	public bool shoot;
-	GameObject tijdelijke_bullet;
-	public GameObject player;
+	private GameObject bulletEmittor;
+	private Transform player;
+	private NavMeshAgent agent;
+	private Animator anim;
 
-	void start(){
-		health = 3;
+	private float minwalkdistance = 7f;
+	private float maxwalkdistance = 30f;
+	private float shootdistance = 13f;
+	private float shootdelay = 2f;
+
+	private float lastfiretime;
+	private bool shoot;
+	Rigidbody tempRigidbody;
+	GameObject tempBullet;
+
+	void Awake () {
+		player = GameObject.Find ("Player").transform;
+		bulletEmittor = transform.GetChild (2).gameObject;
 		anim = GetComponent<Animator> ();
 		agent = GetComponent<NavMeshAgent> ();
-		agent.Warp (new Vector3(0,0,0));
 	}
 
 	void Update () {
-		if (Vector3.Distance (transform.position, playertransform.position) < maxwalkdistance) {
-			if (Vector3.Distance (transform.position, playertransform.position) > minwalkdistance) {
-
-				agent.SetDestination (playertransform.position);
+		if (Vector3.Distance (transform.position, player.position) < maxwalkdistance) {
+			if (Vector3.Distance (transform.position, player.position) > minwalkdistance) {
+				agent.SetDestination (player.position);
 				agent.Resume ();
-				walking = true;
 				anim.SetBool ("walking", true);
 				anim.SetBool ("shoot", false);
-				//transform.Translate (new Vector3 (0, 0, speed * Time.deltaTime));
 			} else {
-				//enemybulletemittor.transform.LookAt (playertransform.position);
-				Vector3 targetPostition = new Vector3( playertransform.position.x, transform.position.y, playertransform.position.z ) ;
+				Vector3 targetPostition = new Vector3( player.position.x, transform.position.y, player.position.z ) ;
 				transform.LookAt( targetPostition ) ;
 
-				enemybulletemittor.transform.LookAt (playertransform.position);
+				bulletEmittor.transform.LookAt (player.position);
 				agent.Stop ();
-				walking = false;
 				//anim.SetBool ("walking", false);
 				anim.SetBool ("shoot", true);
 			}
-		} else if(Vector3.Distance (transform.position, playertransform.position) > maxwalkdistance) {
-			//agent = gameObject.GetComponent<NavMeshAgent> ();
+		} else if(Vector3.Distance (transform.position, player.position) > maxwalkdistance) {
 			agent.Stop();
-			walking = false;
 			anim.SetBool ("walking", false);
 			anim.SetBool ("shoot", false);
 		}
-		if (Vector3.Distance (transform.position, playertransform.position) < shootdistance && (Time.time > (lastfiretime + shootdelay))) {
-			fire ();
-
+		if (Vector3.Distance (transform.position, player.position) < shootdistance && (Time.time > (lastfiretime + shootdelay))) {
+			tempBullet = Instantiate(bullet,bulletEmittor.transform.position, bulletEmittor.transform.rotation) as GameObject;
+			tempRigidbody = tempBullet.GetComponent<Rigidbody> ();
+			tempRigidbody.AddRelativeForce (Vector3.forward * 3000);
+			tempRigidbody.AddTorque(transform.right * 100);
+			//tempbullet.transform.rotation = enemybulletemittor.transform.rotation;
+			lastfiretime = Time.time;
+			Destroy (tempBullet, 3f);
 		}
-
-
-	}
-
-
-
-
-	void fire (){
-
-
-		
-		tijdelijke_bullet = Instantiate(bullet,enemybulletemittor.transform.position, enemybulletemittor.transform.rotation) as GameObject;
-
-		//tijdelijke_bullet.transform.Rotate (Vector3.left *90);
-
-
-		tijdelijke_rigidbody = tijdelijke_bullet.GetComponent<Rigidbody> ();
-
-		tijdelijke_rigidbody.AddForce ( transform.forward * 3000);
-		tijdelijke_rigidbody.AddTorque(transform.right * 100);
-		//tijdelijke_bullet.transform.rotation = enemybulletemittor.transform.rotation;
-		lastfiretime = Time.time;
-
-		Destroy (tijdelijke_bullet, 2f);
 	}
 }

@@ -2,33 +2,64 @@
 using System.Collections;
 
 public class PauseGame : MonoBehaviour {
-	private Transform character;
-	private GameObject pausePanel;
+	private GameObject pausePanel, inventoryPanel, optionsPanel, screen;
+	private GameObject[] panels;
+	private CameraController cam;
 
-	void Start() {
-		character = GameObject.Find ("Character").transform;
+	void Awake () {
+		cam = GameObject.Find ("Character").GetComponent<CameraController> ();
 		pausePanel = GameObject.Find ("Pause Panel");
-		pausePanel.SetActive(false);
+		inventoryPanel = GameObject.Find ("Inventory Panel");
+		optionsPanel = GameObject.Find ("Options Panel");
+		screen = GameObject.Find ("Cutscene");
+		panels = new GameObject[] {pausePanel, inventoryPanel, optionsPanel};
 	}
 
-	// Update is called once per frame
+	void Start () {
+		pausePanel.SetActive (false);
+		inventoryPanel.SetActive (false);
+		optionsPanel.SetActive (false);
+		Time.timeScale = 1;
+	}
+		
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape)){
-			Pause ();
+		if (screen.activeInHierarchy == true) {
+			Time.timeScale = 0;
+			cam.enabled = false;
+		}
+
+		if (InputManager.pause.Pressed) {
+			Pause (pausePanel);
+		}
+
+		if (InputManager.inventory.Pressed) {
+			Pause (inventoryPanel);
 		}
 	}
 
-	public void Pause () {
-
-		if (pausePanel.activeInHierarchy == false) {
-			pausePanel.SetActive(true);
-			Time.timeScale = 0;
-			character.GetComponent<CameraController> ().enabled = false;
-
-		} else {
-			pausePanel.SetActive(false);
-			Time.timeScale = 1;
-			character.GetComponent<CameraController> ().enabled = true;
+	public void Pause (GameObject panel) {
+		foreach (GameObject x in panels) {
+			if (x != panel) {
+				x.SetActive (false);
+			}
 		}
+
+		if (panel.activeInHierarchy == false) {
+			Activate (panel);
+		} else {
+			Deactivate (panel);
+		}
+	}
+
+	public void Activate (GameObject panel) {
+		panel.SetActive(true);
+		Time.timeScale = 0;
+		cam.enabled = false;
+	}
+
+	public void Deactivate (GameObject panel) {
+		panel.SetActive(false);
+		Time.timeScale = 1;
+		cam.enabled = true;
 	}
 }

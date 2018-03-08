@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 	Animator anim;
 	AudioSource stepSource;
 
-	void Start() {
+	void Awake() {
 		centerPoint = GameObject.Find ("Center Point").transform;
 		player = GameObject.Find ("Player").transform;
 		anim = player.GetComponent<Animator> ();
@@ -117,6 +117,9 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (movementDir == Vector3.zero) {
 			anim.SetInteger ("Movement Type", 0);
+			stepSource.Stop ();
+		}
+		if (Time.timeScale == 0) {
 			stepSource.Stop ();
 		}
 		movement = movementDir * moveSpeed;

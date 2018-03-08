@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ShotgunCollision : MonoBehaviour {
 	public List<Collider> colliders;
 
-	void Start () {
+	void Awake () {
 		colliders = new List<Collider> ();
 	}
 

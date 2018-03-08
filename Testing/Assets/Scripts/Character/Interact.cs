@@ -12,11 +12,10 @@ public class Interact : MonoBehaviour {
 	private Text addText;
 	private Text otherText;
 	private GameObject infoBox;
-	//private RawImage preview;
 	private float distance = 7f;
-	private string[] ammoNames, ammoNamesSingle;
+	private string[] ammoNames;
 
-	void Start() {
+	void Awake() {
 		player = GameObject.Find ("Player").transform;
 		interactionInfo = GameObject.Find ("Interaction Info");
 		infoBox = GameObject.Find ("Info Box");
@@ -24,12 +23,12 @@ public class Interact : MonoBehaviour {
 		infoText = GameObject.Find ("Info Text").GetComponent<Text> ();
 		addText = GameObject.Find ("Additional Text").GetComponent<Text> ();
 		otherText = GameObject.Find ("Other Text").GetComponent<Text> ();
-		//preview = GameObject.Find ("Preview Image").GetComponent<RawImage> ();
 		eatSource = GameObject.Find("Eat Sound Source").GetComponent<AudioSource> ();
-
-		interactionInfo.SetActive (false);
-
 		ammoNames = new string[] {"Arrow", "10mm Pistol Bullet", "Revolver Bullet", "Shotgun Shell", "Grenade"};
+	}
+
+	void Start () {
+		interactionInfo.SetActive (false);
 	}
 
 	//Script om het dichtsbijzijnde object uit een collider array te vinden
@@ -135,7 +134,9 @@ public class Interact : MonoBehaviour {
 							if (InputManager.interact.Pressed == true) {
 								anim.SetTrigger ("open");
 								target.GetComponent<Locker> ().isOpened = true;
+								target.GetComponent<AudioSource> ().Play ();
 								PlayerPrefs.SetInt ("Item" + itemNumber.ToString (), 1);
+								FindObjectOfType<LoadInventory> ().Refresh ();
 							}
 						} else {
 							actionText.text = "Open Locker \n<color=red>(Already opened)</color>";

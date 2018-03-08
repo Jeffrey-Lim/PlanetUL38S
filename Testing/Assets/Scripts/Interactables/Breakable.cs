@@ -13,14 +13,16 @@ public class Breakable : MonoBehaviour {
 	private List<Collider> ragdollCol;
 	private Animator anim;
 
-	void Start () { 
+	void Awake () {
 		anim = this.GetComponent<Animator> ();
 		col = this.GetComponent<Collider> ();
 		rb = this.GetComponent<Rigidbody> ();
 
 		ragdollRb = new List<Rigidbody> ();
 		ragdollCol = new List<Collider> ();
+	}
 
+	void Start () { 
 		if (GetComponentsInChildren<Rigidbody> ().Length > 1 && GetComponentsInChildren<Collider> ().Length > 1) {
 			foreach (Rigidbody x in GetComponentsInChildren<Rigidbody> ()) {
 				if (!x.Equals (rb) && x.gameObject.name != "Machete Weapon") {

@@ -6,7 +6,7 @@ public class DamgeOnTouch : MonoBehaviour {
 	public float damage;
 	private List<Collider> beenHit;
 
-	void Start () {
+	void Awake () {
 		beenHit = new List<Collider> ();
 	}
 

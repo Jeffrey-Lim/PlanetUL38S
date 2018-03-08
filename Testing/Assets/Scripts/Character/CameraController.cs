@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour {
 	Vector3 zoom, toZoom;
 	RaycastHit hit;
 
-	void Start() {
+	void Awake() {
 		//Alle nodige gameobject worden hier gevonden
 		crosshair = GameObject.Find ("Crosshair");
 		player = GameObject.Find ("Player").transform;
@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour {
 			minHeight = 0f;
 			Collider[] hitColliders = Physics.OverlapSphere (player.position, distance, 1 << 8);
 			if (target != null) {
-				centerPoint.position = Vector3.Slerp (centerPoint.position, (target.position + player.position) / 2f, Time.deltaTime * 25f);
+				centerPoint.position = Vector3.Slerp (centerPoint.position, ((target.position + player.position) / 2f) + Vector3.up * 3f, Time.deltaTime * 25f);
 				toZoom = new Vector3 (0, 0, -8 - (target.position - player.position).magnitude);
 				crosshair.SetActive (false);
 				if ((player.position - target.position).sqrMagnitude >= 10000f) {

@@ -1,5 +1,4 @@
-﻿// Door Lukas, licht bewerkt door Jeffrey
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,23 +6,22 @@ using UnityEngine.UI;
 public class GetrudeIsABitch : MonoBehaviour {
 	
 	private Transform player;
-	public float minwalkdistance;
-	public float maxwalkdistance;
+	private float minwalkdistance;
+	private float maxwalkdistance;
 	private NavMeshAgent agent;
 	private Vector3 positionwarp;
 	private Animator anim;
 
-	void Start() {
+	void Awake () {
 		player = GameObject.Find ("Player").transform;
 		agent = gameObject.GetComponent<NavMeshAgent> ();
 		anim = gameObject.GetComponent<Animator> ();
-		//minwalkdistance = 3;
-		//maxwalkdistance = 16;
+		minwalkdistance = 10;
+		maxwalkdistance = 80;
 	}
 
-	void Update(){
+	void Update () {
 		// print distance between gertude and player (GP)
-
 		// test if GP is larger than maxwalk
 		if (Vector3.Distance (transform.position, player.position) > maxwalkdistance) {
 			positionwarp = new Vector3(player.position.x, player.position.y + 6, player.position.z);
@@ -36,7 +34,6 @@ public class GetrudeIsABitch : MonoBehaviour {
 		else if (Vector3.Distance (transform.position, player.position) < minwalkdistance) {
 			agent.velocity = Vector3.zero;
 			agent.Stop ();
-
 			anim.SetBool ("walking", false);
 		} 
 		// else GP is between the min and max so the gertrude follows the player

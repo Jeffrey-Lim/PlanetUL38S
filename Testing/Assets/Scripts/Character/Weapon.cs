@@ -21,10 +21,12 @@ public class Weapon : MonoBehaviour {
 	private float force;
 	Ray aimRay;
 	RaycastHit aimHit;
+
 	//Variabelen voor het herladen
 	public static int[] maxAmmo, currentAmmo, inMagazine, maxMagazine;
 	public float reloadTime;
 	private bool reloading = false;
+
 	//Geluiden
 	public AudioClip bowDraw;
 	public AudioClip[] shootingSounds;
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour {
 
 	private List<GameObject> beenHit;
 
-	void Start() {
+	void Awake () {
 		player = GameObject.Find ("Player").transform;
 		anim = player.GetComponent<Animator> ();
 		playerCam = GameObject.Find ("Player Camera").transform;
@@ -43,7 +45,6 @@ public class Weapon : MonoBehaviour {
 		shootSource = GameObject.Find("Shoot Sound").GetComponent<AudioSource> ();
 		centerPoint = GameObject.Find ("Center Point").transform;
 		shotgunRange = GameObject.Find ("Shotgun Range");
-		shotgunRange.SetActive (false);
 
 		//De wapens als gameobject in je hand
 		macheteWeapon = GameObject.Find("Machete Weapon");
@@ -57,11 +58,6 @@ public class Weapon : MonoBehaviour {
 		shotgunWeapon = GameObject.Find("Shotgun Weapon");
 		grenadeWeapon = GameObject.Find("Grenade Weapon");
 
-		weapons = new GameObject[] { macheteWeapon, bowWeapon, pistolWeapon, revolverWeapon, shotgunWeapon, grenadeWeapon };
-		/*foreach (GameObject x in weapons) {
-			x.SetActive (false);
-		}*/
-
 		//GUI Spul
 		ammoAmount = GameObject.Find ("Ammo Amount").GetComponent<Text> ();
 		machetePanel = GameObject.Find ("Machete Panel");
@@ -70,22 +66,23 @@ public class Weapon : MonoBehaviour {
 		revolverPanel = GameObject.Find ("Revolver Panel");
 		shotgunPanel = GameObject.Find ("Shotgun Panel");
 		grenadePanel = GameObject.Find ("Grenade Launcher Panel");
+
+		weapons = new GameObject[] { macheteWeapon, bowWeapon, pistolWeapon, revolverWeapon, shotgunWeapon, grenadeWeapon };
 		panels = new GameObject[] {machetePanel, bowPanel, pistolPanel, revolverPanel, shotgunPanel, grenadePanel};
 
-		maxAmmo = SaveFile.maxAmmo;
-		currentAmmo = SaveFile.currentAmmo;
-		maxMagazine = SaveFile.maxMagazine;
+		currentAmmo = new int[] {30, 100, 60, 30, 10};
+		maxAmmo = new int[] {30, 100, 60, 30, 10 };
+		maxMagazine = new int[] { 1, 10, 6, 4, 1 };
 		inMagazine = new int[] {Mathf.Clamp(currentAmmo[0], 0, 1), Mathf.Clamp(currentAmmo[1], 0, 10), Mathf.Clamp(currentAmmo[2], 0, 6), Mathf.Clamp(currentAmmo[3], 0, 4), Mathf.Clamp(currentAmmo[4], 0, 1)};
-		lastWeapon = currentWeapon;
+	}
 
+	void Start () {
+		shotgunRange.SetActive (false);
+		lastWeapon = currentWeapon;
 		beenHit = new List<GameObject> ();
 	}
 
 	void Update () {
-		/*if (Physics.Raycast (playerCam.position, playerCam.position - playerCam.forward, out aimHit, 100f, ~(1 << 4))) {
-			Quaternion lookDir = Quaternion.LookRotation (Vector3.MoveTowards (gunPoint.position, aimHit.point, 100f).normalized);
-			gunPoint.rotation = lookDir;
-		}*/
 		gunPoint.rotation = Quaternion.Euler (new Vector3 (centerPoint.rotation.eulerAngles.x, player.rotation.eulerAngles.y));
 		currentWeapon = InputManager.currentWeapon;
 		if (currentWeapon != lastWeapon) {

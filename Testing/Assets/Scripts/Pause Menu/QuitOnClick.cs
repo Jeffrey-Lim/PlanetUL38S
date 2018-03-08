@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class QuitOnClick : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class QuitOnClick : MonoBehaviour {
 		#else
 		Application.Quit ();
 		#endif
+	}
+
+	public void Return () {
+		SceneManager.LoadScene ("Main Menu");
 	}
 
 }

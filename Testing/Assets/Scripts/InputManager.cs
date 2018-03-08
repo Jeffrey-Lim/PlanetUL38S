@@ -2,16 +2,15 @@
 using System.Collections;
 
 //Dit script heb ik gemaakt zodat alle input in één script wordt bewaard. Hierdoor blijft de input script in andere scripts kort
-//Dit heb je dus nodig. Dit heb ik dus vooral tegen jou, Michael!!!
 
 // Constructor om makkelijk knoppen te maken
 // Alleen de naam in de Unity inputmanager settings heb je nu nodig
-//Allen handig wanneer je van één knop meerdere eigenschappen nodig hebt
-public class Button {
+// Alleen handig wanneer je van één knop meerdere eigenschappen nodig hebt
+public class InputKey {
 	public bool Hold { get; set;}
 	public bool Pressed { get; set;}
 	public bool Release { get; set;}
-	public Button (string keyname) {
+	public InputKey (string keyname) {
 		Hold = Input.GetButton (keyname); //True wanneer je de knop ingedrukt houdt
 		Pressed = Input.GetButtonDown (keyname); //Alleen true op de frame dat je het indrukt
 		Release = Input.GetButtonUp (keyname); //Alleen true op de frame dat je loslaat
@@ -25,20 +24,22 @@ public class InputManager : MonoBehaviour {
 	//controlmode: Muis en Toetsenbord of Controller
 	//cameraMode: 0 = normaal, 1 = richten, 2 = z-targetting, 3 = Bij rustige stukjes, 4 = Geen controle
 	public static bool running = false;
-	public static Button jump, aim, fire, reload, melee, run, interact;
+	public static InputKey jump, aim, fire, reload, melee, run, interact, pause, inventory;
 	public static float moveXraw, moveYraw;
 	public static Vector3 movementDir;
 	public static int currentWeapon = 3;
 
 	void Update () {
 		if (controlMode == 0) { // Muis en Toetsenbord
-			aim = new Button ("Aim");
-			fire = new Button ("Fire");
-			reload = new Button ("Reload");
-			melee = new Button ("Melee");
-			run = new Button ("Run");
-			jump = new Button ("Jump");
-			interact = new Button ("Interact");
+			aim = new InputKey ("Aim");
+			fire = new InputKey ("Fire");
+			reload = new InputKey ("Reload");
+			melee = new InputKey ("Melee");
+			run = new InputKey ("Run");
+			jump = new InputKey ("Jump");
+			interact = new InputKey ("Interact");
+			pause = new InputKey ("Pause");
+			inventory = new InputKey ("Open Inventory");
 
 			camX = Input.GetAxis("Mouse X") * mouseSensitivity;
 			camY = -Input.GetAxis ("Mouse Y") * mouseSensitivity;
