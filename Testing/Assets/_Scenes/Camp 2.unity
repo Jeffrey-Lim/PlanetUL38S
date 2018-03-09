@@ -506,7 +506,7 @@ Prefab:
     - target: {fileID: 114000010197902832, guid: ff1e0070fc474c2409aad751648dc05e,
         type: 2}
       propertyPath: sceneName
-      value: BeachReal
+      value: Beach
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff1e0070fc474c2409aad751648dc05e, type: 2}
@@ -2854,8 +2854,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1288508161}
-  m_LocalRotation: {x: 0.008996781, y: 0.025496181, z: 0.0002300689, w: -0.99963444}
-  m_LocalPosition: {x: 832.95996, y: -699.17474, z: -5020.476}
+  m_LocalRotation: {x: -0.086868316, y: 0.7314641, z: 0.09488275, w: 0.66963536}
+  m_LocalPosition: {x: -140.43378, y: -15.5051985, z: -99.15384}
   m_LocalScale: {x: 2.7229695, y: 3.2318208, z: 3.0783267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
