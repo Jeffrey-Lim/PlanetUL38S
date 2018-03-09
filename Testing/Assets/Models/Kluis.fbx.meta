@@ -113,7 +113,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Locker Open
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 125
       lastFrame: 210
       wrapMode: 0
       orientationOffsetY: 0
@@ -211,7 +211,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

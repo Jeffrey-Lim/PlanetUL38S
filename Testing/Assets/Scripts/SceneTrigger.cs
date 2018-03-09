@@ -8,6 +8,7 @@ public class SceneTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.name == "Player") {
+			FindObjectOfType<SaveManager> ().SaveGame ();
 			SceneManager.LoadScene(sceneName);
 		}
 	}

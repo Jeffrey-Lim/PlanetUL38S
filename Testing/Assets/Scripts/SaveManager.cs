@@ -42,6 +42,10 @@ public class SaveManager : MonoBehaviour {
 		}
 	}
 
+	public void LoadMainMenu () {
+		SceneManager.LoadScene ("Main Menu");
+	}
+
 	public void LoadGame () {
 		player = GameObject.Find ("Player").transform;
 		player.GetComponent<Breakable> ().health = PlayerPrefs.GetFloat ("Health");

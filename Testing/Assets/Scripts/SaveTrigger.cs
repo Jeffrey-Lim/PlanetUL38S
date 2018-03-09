@@ -8,7 +8,6 @@ public class SaveTrigger : MonoBehaviour {
 		if (other.gameObject.name == "Player" && isTriggered == false) {
 			isTriggered = true;
 			FindObjectOfType<SaveManager> ().SaveGame ();
-			Debug.Log ("nfg");
 		}
 	}
 }

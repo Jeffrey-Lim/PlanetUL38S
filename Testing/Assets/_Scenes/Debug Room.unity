@@ -15609,6 +15609,16 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 130
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010664299444, guid: 8b73f51582ba80d4a9daf85e8e551108,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1477327838}
+    - target: {fileID: 114000010664299444, guid: 8b73f51582ba80d4a9daf85e8e551108,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b73f51582ba80d4a9daf85e8e551108, type: 2}
   m_IsPrefabParent: 0
@@ -22113,8 +22123,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1959330394}
-  m_LocalRotation: {x: 0.17290539, y: 0.55447865, z: 0.11905183, w: -0.80528504}
-  m_LocalPosition: {x: 20.791319, y: -5.2303634, z: 7.566056}
+  m_LocalRotation: {x: 0.008996781, y: 0.025496181, z: 0.0002300689, w: -0.99963444}
+  m_LocalPosition: {x: 606.2703, y: -327.81635, z: -857.4936}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []

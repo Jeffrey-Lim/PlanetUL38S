@@ -1,0 +1,28 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon (TM) R9 380 Series (ID=0x6939)
+    Vendor:   ATI
+    VRAM:     2023 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.221 seconds
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Unity Projects\Unity-Testing\PlanetUL38S\PlanetUL38S_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.938495 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2384 -> priority: 1 
