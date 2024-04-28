@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CutsceneTrigger : MonoBehaviour {
-	public MovieTexture cutscene;
+	public UnityEngine.Video.VideoClip cutscene;
 	private GameObject screen;
 	private CutsceneManager manager;
 	private bool isTriggered = false;

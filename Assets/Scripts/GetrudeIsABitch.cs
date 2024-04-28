@@ -8,13 +8,13 @@ public class GetrudeIsABitch : MonoBehaviour {
 	private Transform player;
 	private float minwalkdistance;
 	private float maxwalkdistance;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private Vector3 positionwarp;
 	private Animator anim;
 
 	void Awake () {
 		player = GameObject.Find ("Player").transform;
-		agent = gameObject.GetComponent<NavMeshAgent> ();
+		agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		anim = gameObject.GetComponent<Animator> ();
 		minwalkdistance = 10;
 		maxwalkdistance = 80;

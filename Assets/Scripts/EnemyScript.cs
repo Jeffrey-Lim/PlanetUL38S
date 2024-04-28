@@ -5,7 +5,7 @@ public class EnemyScript : MonoBehaviour {
 	public GameObject bullet;
 	private GameObject bulletEmittor;
 	private Transform player;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private Animator anim;
 
 	private float minwalkdistance = 7f;
@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour {
 		player = GameObject.Find ("Player").transform;
 		bulletEmittor = transform.GetChild (2).gameObject;
 		anim = GetComponent<Animator> ();
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	}
 
 	void Update () {
