@@ -1,4 +1,4 @@
-# Address: Planet UL-38/S
+# Adress: Planet UL-38/S
 
 ![PlanetUL38S_Social_Preview](https://github.com/Jeffrey-Lim/PlanetUL38S/assets/33672881/8e91b35e-c04d-4fd1-9506-9b4185cf58cb)
 
