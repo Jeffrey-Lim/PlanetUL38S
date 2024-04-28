@@ -1,6 +1,6 @@
 # Address: Planet UL-38/S
 
-![logo](./Assets/Sprites/Logo.png)
+![PlanetUL38S_Social_Preview](https://github.com/Jeffrey-Lim/PlanetUL38S/assets/33672881/8e91b35e-c04d-4fd1-9506-9b4185cf58cb)
 
 After a crash landing on a mysterious red planet, Fred and Gertrude are stuck in a dangerous environment with hostile aliens. 
 As Fred, you must fight the enemies, find food and collectables, and find a way to escape this planet. 
