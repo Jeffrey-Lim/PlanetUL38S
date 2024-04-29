@@ -10,6 +10,6 @@ This game was made in Unity 5.4.0f3 in 2017-2018 as part of a high school assign
 Watch the [playlist of all videos about this game](https://www.youtube.com/playlist?list=PL41M5_bNllT2sPef_zTF4fcewSPG1AZ5X)!
 
 ## Usage
-Currently (as of April 2024), the Unity 5.4.0f3 editor crashes after logging in. It also doesn't work on newer versions of Unity due to the usage of deprecated APIs.
-Maybe someday I will revisit this project and upgrade it to work with newer versions of Unity. 
+Currently, the Unity 5.4.0f3 editor crashes after logging in. This repository also doesn't work on newer versions of Unity due to the usage of deprecated APIs.
+Someone needs to upgrade this project to work with newer versions of Unity. Maybe I will have time for that someday. 
 The only way to run the game now is to download the [binary](https://github.com/Jeffrey-Lim/PlanetUL38S/releases/tag/1.0.0) for Windows. 
